@@ -1,14 +1,14 @@
 {
-  "name": "ts-eslint-prettier-jest-minimal",
+  "name": "kata-mars-rover",
   "version": "1.0.0",
-  "description": "TypeScript template with ESLint, Prettier and Jest",
+  "description": "Kata Mars Rover en TypeScript con Bun, ESLint, Prettier y Jest",
   "main": "lib/index.js",
   "scripts": {
     "prepare": "husky install",
     "dev": "tsc --watch",
-    "build": "npm run clean && tsc -b",
+    "build": "bun run clean && tsc -b",
     "clean": "rm -rf lib coverage",
-    "analyze": "npm run lint:fix && npm run compile",
+    "analyze": "bun run lint:fix && bun run compile",
     "compile": "tsc --noEmit",
     "compile:watch": "tsc --noEmit --watch",
     "compile:build": "tsc -b",
@@ -23,11 +23,11 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
-    "validate": "npm run compile && npm run lint && npm run test",
+    "validate": "bun run compile && bun run lint && bun run test",
     "upgrade": "ncu -i",
     "upgrade:all": "ncu -u"
   },
-  "author": "Softwarecrafters.io",
+  "author": "jmvelasco",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "30.0.0",
