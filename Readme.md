@@ -27,6 +27,7 @@ Estás desarrollando la API para controlar un vehículo explorador (rover) en la
      - `R`: Gira 90 grados a la derecha (sin cambiar de casilla).
      - `M` (o `F`): Avanza una posición hacia adelante en la dirección actual.
      - `B`: Retrocede una posición en la dirección opuesta.
+   - **Persistencia de Estado**: El rover **mantiene su posición y orientación actual**. Al enviar un nuevo comando o secuencia, el movimiento parte de donde quedó el rover tras la ejecución anterior (no regresa al origen).
 
 3. **Malla Esférica (Wrapping)**:
    - Dado que la superficie planetaria se conecta en los bordes de la cuadrícula, si el rover se desplaza más allá del límite del mapa, debe reaparecer en el extremo opuesto (grid wrapping).
