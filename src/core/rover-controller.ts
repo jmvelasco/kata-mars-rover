@@ -1,34 +1,41 @@
 import { Orientation } from './orientation';
+import { Position, Surface } from './surface';
 
 type commands = 'L' | 'R' | 'F' | 'B';
-const maxX = 10;
-const maxY = 10;
 
 export class RoverController {
   constructor(
-    private posX: number,
-    private posY: number,
-    private orientation: Orientation
+    private position: Position,
+    private readonly surface: Surface
   ) {}
 
-  static initialize(posX: number, posY: number, orientation: Orientation) {
-    return new RoverController(posX, posY, orientation);
+  static initialize(position: Position, surface: Surface) {
+    return new RoverController(position, surface);
   }
 
   public command(command: string) {
     const movements = command.split('') as commands[];
     for (const movement of movements) {
       if (this.isRotationCommand(movement)) {
-        this.orientation = this.rotate(movement);
+        const newOrientation = this.rotate(movement);
+        this.position = Position.create(this.position.value().x, this.position.value().y, newOrientation);
       }
-      if (this.orientation.equals(Orientation.East()) || this.orientation.equals(Orientation.West())) {
-        this.posX = this.move(movement) ?? this.posX;
+      if (
+        this.position.value().orientation.equals(Orientation.East()) ||
+        this.position.value().orientation.equals(Orientation.West())
+      ) {
+        const newPosX = this.move(movement) ?? this.position.value().x;
+        this.position = Position.create(newPosX, this.position.value().y, this.position.value().orientation);
       }
-      if (this.orientation.equals(Orientation.North()) || this.orientation.equals(Orientation.South())) {
-        this.posY = this.move(movement) ?? this.posY;
+      if (
+        this.position.value().orientation.equals(Orientation.North()) ||
+        this.position.value().orientation.equals(Orientation.South())
+      ) {
+        const newPosY = this.move(movement) ?? this.position.value().y;
+        this.position = Position.create(this.position.value().x, newPosY, this.position.value().orientation);
       }
     }
-    return new RoverController(this.posX, this.posY, this.orientation);
+    return new RoverController(this.position, this.surface);
   }
 
   private isRotationCommand(command: string) {
@@ -36,37 +43,47 @@ export class RoverController {
   }
 
   private rotate = (command: commands) => {
-    return command === 'L' ? this.orientation.rotateLeft() : this.orientation.rotateRight();
+    return command === 'L'
+      ? this.position.value().orientation.rotateLeft()
+      : this.position.value().orientation.rotateRight();
   };
 
   private move(operation: commands) {
     if (this.moveForward(operation)) {
-      if (this.orientation.equals(Orientation.East())) {
-        return this.isEastEdge() ? 0 : this.posX + 1;
+      if (this.position.value().orientation.equals(Orientation.East())) {
+        return this.position.wrapSurface(this.surface) ? 0 : this.position.value().x + 1;
       }
-      if (this.orientation.equals(Orientation.West())) {
-        return this.isWestEdge() ? maxX - 1 : this.posX - 1;
+      if (this.position.value().orientation.equals(Orientation.West())) {
+        return this.position.wrapSurface(this.surface)
+          ? this.surface.dimension().columns - 1
+          : this.position.value().x - 1;
       }
-      if (this.orientation.equals(Orientation.North())) {
-        return this.isNorthEdge() ? 0 : this.posY + 1;
+      if (this.position.value().orientation.equals(Orientation.North())) {
+        return this.position.wrapSurface(this.surface) ? 0 : this.position.value().y + 1;
       }
-      if (this.orientation.equals(Orientation.South())) {
-        return this.isSouthEdge() ? maxY - 1 : this.posY - 1;
+      if (this.position.value().orientation.equals(Orientation.South())) {
+        return this.position.wrapSurface(this.surface)
+          ? this.surface.dimension().rows - 1
+          : this.position.value().y - 1;
       }
     }
 
     if (this.moveBackward(operation)) {
-      if (this.orientation.equals(Orientation.East())) {
-        return this.isWestEdge() ? maxX - 1 : this.posX - 1;
+      if (this.position.value().orientation.equals(Orientation.East())) {
+        return this.position.wrapSurface(this.surface)
+          ? this.surface.dimension().columns - 1
+          : this.position.value().x - 1;
       }
-      if (this.orientation.equals(Orientation.West())) {
-        return this.isEastEdge() ? 0 : this.posX + 1;
+      if (this.position.value().orientation.equals(Orientation.West())) {
+        return this.position.wrapSurface(this.surface) ? 0 : this.position.value().x + 1;
       }
-      if (this.orientation.equals(Orientation.North())) {
-        return this.isSouthEdge() ? maxY - 1 : this.posY - 1;
+      if (this.position.value().orientation.equals(Orientation.North())) {
+        return this.position.wrapSurface(this.surface)
+          ? this.surface.dimension().rows - 1
+          : this.position.value().y - 1;
       }
-      if (this.orientation.equals(Orientation.South())) {
-        return this.isNorthEdge() ? 0 : this.posY + 1;
+      if (this.position.value().orientation.equals(Orientation.South())) {
+        return this.position.wrapSurface(this.surface) ? 0 : this.position.value().y + 1;
       }
     }
 
@@ -81,12 +98,7 @@ export class RoverController {
     return operation === 'B';
   }
 
-  private isNorthEdge = () => this.orientation.equals(Orientation.North()) && this.posY === maxY;
-  private isSouthEdge = () => this.orientation.equals(Orientation.South()) && this.posY === 0;
-  private isEastEdge = () => this.orientation.equals(Orientation.East()) && this.posX === maxX;
-  private isWestEdge = () => this.orientation.equals(Orientation.West()) && this.posX === 0;
-
-  public position() {
-    return `${this.posX}:${this.posY}:${this.orientation.value()}`;
+  public displayPosition() {
+    return `${this.position.value().x}:${this.position.value().y}:${this.position.value().orientation.value()}`;
   }
 }
