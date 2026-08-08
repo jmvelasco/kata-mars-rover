@@ -1,4 +1,5 @@
-type cardinalPoint = 'N' | 'S' | 'E' | 'W';
+import { Orientation } from './orientation';
+
 type commands = 'L' | 'R' | 'F' | 'B';
 const maxX = 10;
 const maxY = 10;
@@ -7,10 +8,10 @@ export class RoverController {
   constructor(
     private posX: number,
     private posY: number,
-    private orientation: cardinalPoint
+    private orientation: Orientation
   ) {}
 
-  static initialize(posX: number, posY: number, orientation: cardinalPoint) {
+  static initialize(posX: number, posY: number, orientation: Orientation) {
     return new RoverController(posX, posY, orientation);
   }
 
@@ -20,10 +21,10 @@ export class RoverController {
       if (this.isRotationCommand(movement)) {
         this.orientation = this.rotate(movement);
       }
-      if (this.isOrientedToEast() || this.isOrientedToWest()) {
+      if (this.orientation.equals(Orientation.East()) || this.orientation.equals(Orientation.West())) {
         this.posX = this.move(movement) ?? this.posX;
       }
-      if (this.isOrientedToNorth() || this.isOrientedToSouth()) {
+      if (this.orientation.equals(Orientation.North()) || this.orientation.equals(Orientation.South())) {
         this.posY = this.move(movement) ?? this.posY;
       }
     }
@@ -35,46 +36,36 @@ export class RoverController {
   }
 
   private rotate = (command: commands) => {
-    const cardinalPoint: cardinalPoint[] = ['N', 'E', 'S', 'W'];
-    const currentOrientationIdx = cardinalPoint.indexOf(this.orientation);
-    if (command === 'L') {
-      if (currentOrientationIdx === 0) return cardinalPoint[3];
-      return cardinalPoint[currentOrientationIdx - 1];
-    }
-    if (command === 'R') {
-      if (currentOrientationIdx === 3) return cardinalPoint[0];
-      return cardinalPoint[currentOrientationIdx + 1];
-    }
-    return this.orientation;
+    return command === 'L' ? this.orientation.rotateLeft() : this.orientation.rotateRight();
   };
 
   private move(operation: commands) {
     if (this.moveForward(operation)) {
-      if (this.isOrientedToEast()) {
+      if (this.orientation.equals(Orientation.East())) {
         return this.isEastEdge() ? 0 : this.posX + 1;
       }
-      if (this.isOrientedToWest()) {
+      if (this.orientation.equals(Orientation.West())) {
         return this.isWestEdge() ? maxX - 1 : this.posX - 1;
       }
-      if (this.isOrientedToNorth()) {
+      if (this.orientation.equals(Orientation.North())) {
         return this.isNorthEdge() ? 0 : this.posY + 1;
       }
-      if (this.isOrientedToSouth()) {
+      if (this.orientation.equals(Orientation.South())) {
         return this.isSouthEdge() ? maxY - 1 : this.posY - 1;
       }
     }
 
     if (this.moveBackward(operation)) {
-      if (this.isOrientedToEast()) {
+      if (this.orientation.equals(Orientation.East())) {
         return this.isWestEdge() ? maxX - 1 : this.posX - 1;
       }
-      if (this.isOrientedToWest()) {
+      if (this.orientation.equals(Orientation.West())) {
         return this.isEastEdge() ? 0 : this.posX + 1;
       }
-      if (this.isOrientedToNorth()) {
+      if (this.orientation.equals(Orientation.North())) {
         return this.isSouthEdge() ? maxY - 1 : this.posY - 1;
       }
-      if (this.isOrientedToSouth()) {
+      if (this.orientation.equals(Orientation.South())) {
         return this.isNorthEdge() ? 0 : this.posY + 1;
       }
     }
@@ -90,16 +81,12 @@ export class RoverController {
     return operation === 'B';
   }
 
-  private isNorthEdge = () => this.orientation === 'N' && this.posY === maxY;
-  private isOrientedToNorth = () => this.orientation === 'N';
-  private isSouthEdge = () => this.orientation === 'S' && this.posY === 0;
-  private isOrientedToSouth = () => this.orientation === 'S';
-  private isEastEdge = () => this.orientation === 'E' && this.posX === maxX;
-  private isOrientedToEast = () => this.orientation === 'E';
-  private isWestEdge = () => this.orientation === 'W' && this.posX === 0;
-  private isOrientedToWest = () => this.orientation === 'W';
+  private isNorthEdge = () => this.orientation.equals(Orientation.North()) && this.posY === maxY;
+  private isSouthEdge = () => this.orientation.equals(Orientation.South()) && this.posY === 0;
+  private isEastEdge = () => this.orientation.equals(Orientation.East()) && this.posX === maxX;
+  private isWestEdge = () => this.orientation.equals(Orientation.West()) && this.posX === 0;
 
   public position() {
-    return `${this.posX}:${this.posY}:${this.orientation}`;
+    return `${this.posX}:${this.posY}:${this.orientation.value()}`;
   }
 }
