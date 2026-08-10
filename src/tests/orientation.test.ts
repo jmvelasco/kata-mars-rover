@@ -1,3 +1,4 @@
+import { describe, expect, test } from '@jest/globals';
 import { Orientation } from '../core/orientation';
 
 describe('Orientation', () => {

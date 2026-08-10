@@ -1,10 +1,10 @@
 # 🛸 Mars Rover Kata
 
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue.svg)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Bun-1.3-black.svg)](https://bun.sh/)
-[![ESLint](https://img.shields.io/badge/ESLint-9.32-4B32C3.svg)](https://eslint.org/)
-[![Prettier](https://img.shields.io/badge/Prettier-3.6-F7B93E.svg)](https://prettier.io/)
-[![Jest](https://img.shields.io/badge/Jest-30.0-C21325.svg)](https://jestjs.io/)
+[![ESLint](https://img.shields.io/badge/ESLint-9.39-4B32C3.svg)](https://eslint.org/)
+[![Prettier](https://img.shields.io/badge/Prettier-3.7-F7B93E.svg)](https://prettier.io/)
+[![Jest](https://img.shields.io/badge/Jest-30.2-C21325.svg)](https://jestjs.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Proyecto para la resolución de la **Kata Mars Rover** en TypeScript utilizando Bun, Jest, ESLint y Prettier.
@@ -46,6 +46,7 @@ Estás desarrollando la API para controlar un vehículo explorador (rover) en la
 ### Prerrequisitos
 
 - [Bun](https://bun.sh/) >= 1.0.0
+- [Node.js](https://nodejs.org/) >= 22 (lo usa Jest; la versión fijada está en `.nvmrc`)
 
 ### Instalación
 
@@ -69,6 +70,8 @@ bun test
 
 ```bash
 bun dev              # Modo watch para compilación TypeScript
+bun run build        # Compilar a ./lib (sin los tests)
+bun run compile      # Chequeo de tipos de todo src (incluidos los tests)
 bun run lint         # Ejecutar ESLint
 bun run lint:fix     # Corregir errores de ESLint automáticamente
 bun run format       # Comprobar el formato con Prettier

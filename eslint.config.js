@@ -1,33 +1,36 @@
-const tseslint = require('@typescript-eslint/eslint-plugin');
-const tsparser = require('@typescript-eslint/parser');
-const prettierPlugin = require('eslint-plugin-prettier');
-const prettierConfig = require('eslint-config-prettier');
+const js = require('@eslint/js');
+const tseslint = require('typescript-eslint');
+const prettierRecommended = require('eslint-plugin-prettier/recommended');
 
-module.exports = [
+module.exports = tseslint.config(
+  { ignores: ['node_modules/**', 'lib/**', 'coverage/**'] },
+  js.configs.recommended,
   {
-    ignores: ['node_modules/**', 'lib/**', 'coverage/**', 'dist/**'],
-  },
-  {
-    files: ['**/*.ts', '**/*.tsx'],
+    // Reglas con información de tipos, solo para el código fuente.
+    files: ['src/**/*.ts'],
+    extends: [tseslint.configs.recommendedTypeChecked],
     languageOptions: {
-      parser: tsparser,
       parserOptions: {
-        ecmaVersion: 'latest',
-        sourceType: 'module',
+        projectService: true,
+        tsconfigRootDir: __dirname,
       },
     },
-    plugins: {
-      '@typescript-eslint': tseslint,
-      prettier: prettierPlugin,
-    },
     rules: {
-      ...tseslint.configs['eslint-recommended']?.rules,
-      ...tseslint.configs['recommended']?.rules,
-      ...prettierConfig.rules,
-      '@typescript-eslint/explicit-module-boundary-types': 0,
-      'no-console': 1,
-      'prettier/prettier': 1,
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      'no-console': 'warn',
     },
   },
-];
-
+  {
+    // Los ficheros de configuración son CommonJS y quedan fuera del programa de TS.
+    files: ['**/*.js'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: {
+        __dirname: 'readonly',
+        module: 'writable',
+        require: 'readonly',
+      },
+    },
+  },
+  prettierRecommended
+);
