@@ -1,24 +1,12 @@
-type directions = 'N' | 'S' | 'E' | 'W';
+export type directions = 'N' | 'S' | 'E' | 'W';
 
 export class Orientation {
   private static readonly directions: directions[] = ['N', 'E', 'S', 'W'];
 
   constructor(private readonly direction: directions) {}
 
-  static North() {
-    return new Orientation('N');
-  }
-
-  static South() {
-    return new Orientation('S');
-  }
-
-  static East() {
-    return new Orientation('E');
-  }
-
-  static West() {
-    return new Orientation('W');
+  static create(direction: directions) {
+    return new Orientation(direction);
   }
 
   rotateLeft() {
