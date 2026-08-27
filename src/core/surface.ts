@@ -1,7 +1,4 @@
-type Coordinate = {
-  x: number;
-  y: number;
-};
+import { Position } from './position';
 
 export class Surface {
   constructor(
@@ -9,24 +6,8 @@ export class Surface {
     private readonly columns: number
   ) {}
 
-  shouldWrapTheSurface(coordinate: Coordinate): {
-    E: boolean;
-    W: boolean;
-    S: boolean;
-    N: boolean;
-  } {
-    return {
-      E: coordinate.x >= this.columns,
-      W: coordinate.x < 0,
-      S: coordinate.y < 0,
-      N: coordinate.y >= this.rows,
-    };
-  }
-
-  dimension() {
-    return {
-      rows: this.rows,
-      columns: this.columns,
-    };
+  normalizedPosition(position: Position) {
+    const { x, y, orientation } = position.value();
+    return new Position((x + this.columns) % this.columns, (y + this.rows) % this.rows, orientation);
   }
 }

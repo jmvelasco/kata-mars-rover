@@ -1,83 +1,50 @@
 import { describe, expect, test } from '@jest/globals';
 import { Surface } from '../core/surface';
+import { Position } from '../core/position';
+import { Orientation } from '../core/orientation';
 
 describe('The Surface module', () => {
-  test('create a surface with the defined dimension', () => {
+  test('returns the normalized position', () => {
     const surfaceRows = 10;
     const surfaceCols = 20;
     const surface = new Surface(surfaceRows, surfaceCols);
-    expect(surface).toBeInstanceOf(Surface);
-    expect(surface.dimension().rows).toBe(surfaceRows);
-    expect(surface.dimension().columns).toBe(surfaceCols);
+    const orientation = Orientation.create('N');
+
+    const position = Position.create(23, 12, orientation);
+    const normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 3, y: 2, orientation: orientation });
   });
 
-  test('detects when the surface is must not be wrapped ', () => {
+  test('returns the normalized position', () => {
     const surfaceRows = 10;
     const surfaceCols = 20;
     const surface = new Surface(surfaceRows, surfaceCols);
+    const orientation = Orientation.create('N');
+    let position: Position;
+    let normalizedPosition: Position;
 
-    const coordinate = { x: surfaceCols - 1, y: surfaceRows - 1 };
-    expect(surface.shouldWrapTheSurface(coordinate)).toEqual({
-      E: false,
-      W: false,
-      S: false,
-      N: false,
-    });
-  });
+    position = Position.create(20, 10, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 0, y: 0, orientation: orientation });
 
-  test('detects when the surface is wrapped at the north', () => {
-    const surfaceRows = 10;
-    const surfaceCols = 20;
-    const surface = new Surface(surfaceRows, surfaceCols);
+    position = Position.create(22, 9, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 2, y: 9, orientation: orientation });
 
-    const coordinate = { x: surfaceCols - 1, y: surfaceRows + 1 };
-    expect(surface.shouldWrapTheSurface(coordinate)).toEqual({
-      E: false,
-      W: false,
-      S: false,
-      N: true,
-    });
-  });
+    position = Position.create(18, 12, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 18, y: 2, orientation: orientation });
 
-  test('detects when the surface is wrapped at the south', () => {
-    const surfaceRows = 10;
-    const surfaceCols = 20;
-    const surface = new Surface(surfaceRows, surfaceCols);
+    position = Position.create(18, -1, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 18, y: 9, orientation: orientation });
 
-    const coordinate = { x: surfaceCols - 1, y: surfaceRows - (surfaceRows + 1) };
-    expect(surface.shouldWrapTheSurface(coordinate)).toEqual({
-      E: false,
-      W: false,
-      S: true,
-      N: false,
-    });
-  });
+    position = Position.create(-1, -1, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 19, y: 9, orientation: orientation });
 
-  test('detects when the surface is wrapped at the east', () => {
-    const surfaceRows = 10;
-    const surfaceCols = 20;
-    const surface = new Surface(surfaceRows, surfaceCols);
-
-    const coordinate = { x: surfaceCols + 1, y: surfaceRows - 1 };
-    expect(surface.shouldWrapTheSurface(coordinate)).toEqual({
-      E: true,
-      W: false,
-      S: false,
-      N: false,
-    });
-  });
-
-  test('detects when the surface is wrapped at the west', () => {
-    const surfaceRows = 10;
-    const surfaceCols = 20;
-    const surface = new Surface(surfaceRows, surfaceCols);
-
-    const coordinate = { x: surfaceCols - (surfaceCols + 1), y: surfaceRows - 1 };
-    expect(surface.shouldWrapTheSurface(coordinate)).toEqual({
-      E: false,
-      W: true,
-      S: false,
-      N: false,
-    });
+    position = Position.create(-3, 3, orientation);
+    normalizedPosition = surface.normalizedPosition(position);
+    expect(normalizedPosition.value()).toEqual({ x: 17, y: 3, orientation: orientation });
   });
 });
