@@ -10,6 +10,9 @@ export class RoverController {
   ) {}
 
   static initialize(position: Position, surface: Surface) {
+    if (surface.isOutOfBounds(position)) {
+      throw new Error('The Rover is positioned outside the boundaries of the surface');
+    }
     return new RoverController(position, surface);
   }
 
