@@ -21,20 +21,20 @@ export class Position {
 
   moveForward() {
     return {
-      N: new Position(this.x, this.y + 1, this.orientation),
-      S: new Position(this.x, this.y - 1, this.orientation),
-      E: new Position(this.x + 1, this.y, this.orientation),
-      W: new Position(this.x - 1, this.y, this.orientation),
-    }[this.orientation.value()];
+      N: () => new Position(this.x, this.y + 1, this.orientation),
+      S: () => new Position(this.x, this.y - 1, this.orientation),
+      E: () => new Position(this.x + 1, this.y, this.orientation),
+      W: () => new Position(this.x - 1, this.y, this.orientation),
+    }[this.orientation.value()]();
   }
 
   moveBackward() {
     return {
-      N: new Position(this.x, this.y - 1, this.orientation),
-      S: new Position(this.x, this.y + 1, this.orientation),
-      E: new Position(this.x - 1, this.y, this.orientation),
-      W: new Position(this.x + 1, this.y, this.orientation),
-    }[this.orientation.value()];
+      N: () => new Position(this.x, this.y - 1, this.orientation),
+      S: () => new Position(this.x, this.y + 1, this.orientation),
+      E: () => new Position(this.x - 1, this.y, this.orientation),
+      W: () => new Position(this.x + 1, this.y, this.orientation),
+    }[this.orientation.value()]();
   }
 
   value() {
