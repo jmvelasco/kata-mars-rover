@@ -1,11 +1,15 @@
-export type directions = 'N' | 'S' | 'E' | 'W';
+export type Directions = 'N' | 'S' | 'E' | 'W';
+export type Coordinates = {
+  x: number;
+  y: number;
+};
 
 export class Orientation {
-  private static readonly directions: directions[] = ['N', 'E', 'S', 'W'];
+  private static readonly directions: Directions[] = ['N', 'E', 'S', 'W'];
 
-  constructor(private readonly direction: directions) {}
+  constructor(private readonly direction: Directions) {}
 
-  static create(direction: directions) {
+  static create(direction: Directions) {
     return new Orientation(direction);
   }
 
@@ -17,6 +21,15 @@ export class Orientation {
   rotateRight() {
     const newDirectionIndex = (this.directionIndex() + 1) % 4;
     return new Orientation(this.getDirection(newDirectionIndex));
+  }
+
+  getDisplacement(): Coordinates {
+    return {
+      E: { x: 1, y: 0 },
+      W: { x: -1, y: 0 },
+      N: { x: 0, y: 1 },
+      S: { x: 0, y: -1 },
+    }[this.direction];
   }
 
   equals(other: Orientation): boolean {

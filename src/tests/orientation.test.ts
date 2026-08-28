@@ -15,4 +15,11 @@ describe('Orientation', () => {
     expect(Orientation.create('E').rotateRight().equals(Orientation.create('S'))).toBe(true);
     expect(Orientation.create('W').rotateRight().equals(Orientation.create('N'))).toBe(true);
   });
+
+  test('should get the displacement to the next position depending on the orientation', () => {
+    expect(Orientation.create('N').getDisplacement()).toEqual({ x: 0, y: 1 });
+    expect(Orientation.create('S').getDisplacement()).toEqual({ x: 0, y: -1 });
+    expect(Orientation.create('E').getDisplacement()).toEqual({ x: 1, y: 0 });
+    expect(Orientation.create('W').getDisplacement()).toEqual({ x: -1, y: 0 });
+  });
 });

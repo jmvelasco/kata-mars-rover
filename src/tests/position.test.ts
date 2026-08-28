@@ -1,8 +1,8 @@
 import { describe, expect, test } from '@jest/globals';
 import { Position } from '../core/position';
-import { directions, Orientation } from '../core/orientation';
+import { Directions, Orientation } from '../core/orientation';
 
-const createInitialPositionOrientedTo = (direction: directions) => {
+const createInitialPositionOrientedTo = (direction: Directions) => {
   return new Position(0, 0, Orientation.create(direction));
 };
 
