@@ -1,8 +1,11 @@
+import { Navigator } from './Navigator';
+
 export class Rover {
   constructor(
-    private readonly x: number,
-    private readonly y: number,
-    private direction: string
+    private x: number,
+    private y: number,
+    private direction: string,
+    private readonly navigator: Navigator
   ) {}
 
   execute(commands: string): string {

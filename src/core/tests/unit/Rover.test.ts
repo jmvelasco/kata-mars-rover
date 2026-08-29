@@ -1,52 +1,54 @@
 import { describe, it, expect } from 'bun:test';
 import { Rover } from '../../domain/Rover';
+import { Navigator } from '../../domain/Navigator';
+import { Planet } from '../../domain/Planet';
+
+const createRover = (x: number, y: number, direction: string) => {
+  const planet = new Planet(10, 10, []);
+  const navigator = new Navigator(planet);
+  return new Rover(x, y, direction, navigator);
+};
 
 describe('The Rover', () => {
   it('stays in initial position when receiving an empty command', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('');
-
     expect(report).toBe('0:0:N');
   });
 
   it('rotates Left (L) once from North to West', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('L');
-
     expect(report).toBe('0:0:W');
   });
 
   it('rotates Right (R) once from North to East', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('R');
-
     expect(report).toBe('0:0:E');
   });
 
   it('processes multiple commands (LL) and rotates from North to South', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('LL');
-
     expect(report).toBe('0:0:S');
   });
 
   it('rotates 360 degrees (LLLL) and returns to original direction', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('LLLL');
-
     expect(report).toBe('0:0:N');
   });
 
   it('rotates 360 degrees (RRRR) and returns to original direction', () => {
-    const rover = new Rover(0, 0, 'N');
-
+    const rover = createRover(0, 0, 'N');
     const report = rover.execute('RRRR');
-
     expect(report).toBe('0:0:N');
+  });
+
+  it('moves Forward (M) facing North (Y+1)', () => {
+    const rover = createRover(0, 0, 'N');
+    const report = rover.execute('M');
+    expect(report).toBe('0:1:N');
   });
 });
