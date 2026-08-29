@@ -38,4 +38,13 @@ describe('The Navigator', () => {
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
   });
+
+  it('wraps around the South edge (Y < 0) to Y = max (9)', () => {
+    const planet = new Planet(10, 10, []);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'S', 'M');
+
+    expect(result).toEqual({ success: true, coordinate: { x: 0, y: 9 } });
+  });
 });
