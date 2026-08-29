@@ -11,4 +11,13 @@ describe('The Navigator', () => {
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 1 } });
   });
+
+  it('calculates the next position backward facing North', () => {
+    const planet = new Planet(10, 10, []);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 0, y: 1 }, 'N', 'B');
+
+    expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
+  });
 });
