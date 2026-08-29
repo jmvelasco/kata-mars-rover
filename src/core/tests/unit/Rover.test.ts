@@ -63,4 +63,10 @@ describe('The Rover', () => {
     const report = rover.execute('M');
     expect(report).toBe('1:0:E');
   });
+
+  it('crosses North edge (Y > max) and appears at Y = 0', () => {
+    const rover = createRover(0, 9, 'N');
+    const report = rover.execute('M');
+    expect(report).toBe('0:0:N');
+  });
 });

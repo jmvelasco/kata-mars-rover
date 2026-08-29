@@ -29,4 +29,13 @@ describe('The Navigator', () => {
 
     expect(result).toEqual({ success: true, coordinate: { x: 1, y: 0 } });
   });
+
+  it('wraps around the North edge (Y > max) to Y = 0', () => {
+    const planet = new Planet(10, 10, []);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 0, y: 9 }, 'N', 'M');
+
+    expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
+  });
 });
