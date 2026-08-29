@@ -17,6 +17,7 @@ export class Rover {
     if (command === 'L') this.rotateLeft();
     if (command === 'R') this.rotateRight();
     if (command === 'M') this.moveForward();
+    if (command === 'B') this.moveBackward();
   }
 
   private moveForward(): void {
@@ -24,6 +25,18 @@ export class Rover {
       { x: this.x, y: this.y },
       this.direction,
       'M'
+    );
+    if (result.success) {
+      this.x = result.coordinate.x;
+      this.y = result.coordinate.y;
+    }
+  }
+
+  private moveBackward(): void {
+    const result = this.navigator.calculateNextPosition(
+      { x: this.x, y: this.y },
+      this.direction,
+      'B'
     );
     if (result.success) {
       this.x = result.coordinate.x;
