@@ -47,4 +47,22 @@ describe('The Navigator', () => {
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 9 } });
   });
+
+  it('wraps around the East edge (X > max) to X = 0', () => {
+    const planet = new Planet(10, 10, []);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 9, y: 0 }, 'E', 'M');
+
+    expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
+  });
+
+  it('wraps around the West edge (X < 0) to X = max (9)', () => {
+    const planet = new Planet(10, 10, []);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'W', 'M');
+
+    expect(result).toEqual({ success: true, coordinate: { x: 9, y: 0 } });
+  });
 });

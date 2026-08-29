@@ -21,6 +21,9 @@ export class Navigator {
     if (y >= this.planet.height) y = 0;
     else if (y < 0) y = this.planet.height - 1;
 
+    if (x >= this.planet.width) x = 0;
+    else if (x < 0) x = this.planet.width - 1;
+
     return { success: true, coordinate: { x, y } };
   }
 }

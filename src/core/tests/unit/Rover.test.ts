@@ -75,4 +75,16 @@ describe('The Rover', () => {
     const report = rover.execute('M');
     expect(report).toBe('0:9:S');
   });
+
+  it('crosses East edge (X > max) and appears at X = 0', () => {
+    const rover = createRover(9, 0, 'E');
+    const report = rover.execute('M');
+    expect(report).toBe('0:0:E');
+  });
+
+  it('crosses West edge (X < 0) and appears at X = max', () => {
+    const rover = createRover(0, 0, 'W');
+    const report = rover.execute('M');
+    expect(report).toBe('9:0:W');
+  });
 });
