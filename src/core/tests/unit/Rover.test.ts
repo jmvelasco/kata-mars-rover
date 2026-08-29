@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'bun:test';
 import { Rover } from '../../domain/Rover';
 import { Navigator } from '../../domain/Navigator';
 import { Planet } from '../../domain/Planet';

@@ -1,5 +1,4 @@
-import { describe, it, expect } from 'bun:test';
-import { Planet } from '../../../../src/core/domain/Planet';
+import { Planet } from '../../domain/Planet';
 
 describe('The Planet', () => {
   it('detects an obstacle at a given coordinate', () => {

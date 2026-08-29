@@ -1,3 +1,5 @@
+import { Coordinate } from './Navigator';
+
 export class Planet {
   constructor(
     public readonly width: number,
