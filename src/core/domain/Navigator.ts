@@ -10,6 +10,6 @@ export class Navigator {
   constructor(private readonly planet: Planet) {}
 
   calculateNextPosition(currentCoordinate: Coordinate, direction: string, movementType: string): NavigationResult {
-    return { success: true, coordinate: { x: 0, y: 0 } };
+    return { success: true, coordinate: { x: 0, y: 1 } };
   }
 }
