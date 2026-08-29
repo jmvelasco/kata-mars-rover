@@ -1,5 +1,5 @@
-import { Navigator } from '../../domain/Navigator';
-import { Planet } from '../../domain/Planet';
+import { Navigator } from '../core/Navigator';
+import { Planet } from '../core/Planet';
 
 describe('The Navigator', () => {
   it('calculates the next position forward facing North', () => {

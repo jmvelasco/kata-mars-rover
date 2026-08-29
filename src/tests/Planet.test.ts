@@ -1,4 +1,4 @@
-import { Planet } from '../../domain/Planet';
+import { Planet } from '../core/Planet';
 
 describe('The Planet', () => {
   it('detects an obstacle at a given coordinate', () => {

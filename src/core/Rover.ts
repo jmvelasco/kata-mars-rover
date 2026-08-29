@@ -24,16 +24,12 @@ export class Rover {
     if (command === 'L') this.rotateLeft();
     else if (command === 'R') this.rotateRight();
     else if (command === 'M' || command === 'B') return this.move(command);
-    
+
     return true;
   }
 
   private move(movementType: string): boolean {
-    const result = this.navigator.calculateNextPosition(
-      { x: this.x, y: this.y },
-      this.direction,
-      movementType
-    );
+    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction, movementType);
     if (result.success) {
       this.x = result.coordinate.x;
       this.y = result.coordinate.y;

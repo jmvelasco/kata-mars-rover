@@ -1,6 +1,6 @@
-import { Rover } from '../../domain/Rover';
-import { Navigator } from '../../domain/Navigator';
-import { Planet } from '../../domain/Planet';
+import { Rover } from '../core/Rover';
+import { Navigator } from '../core/Navigator';
+import { Planet } from '../core/Planet';
 
 const createRover = (x: number, y: number, direction: string, obstacles: { x: number; y: number }[] = []) => {
   const planet = new Planet(10, 10, obstacles);

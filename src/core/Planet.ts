@@ -8,8 +8,6 @@ export class Planet {
   ) {}
 
   hasObstacleAt(coordinate: Coordinate): boolean {
-    return this.obstacles.some(
-      (obstacle) => obstacle.x === coordinate.x && obstacle.y === coordinate.y
-    );
+    return this.obstacles.some((obstacle) => obstacle.x === coordinate.x && obstacle.y === coordinate.y);
   }
 }
