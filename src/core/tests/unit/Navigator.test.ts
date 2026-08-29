@@ -65,4 +65,13 @@ describe('The Navigator', () => {
 
     expect(result).toEqual({ success: true, coordinate: { x: 9, y: 0 } });
   });
+
+  it('fails to move and returns reason OBSTACLE if there is an obstacle', () => {
+    const planet = new Planet(10, 10, [{ x: 0, y: 1 }]);
+    const navigator = new Navigator(planet);
+
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'N', 'M');
+
+    expect(result).toEqual({ success: false, coordinate: { x: 0, y: 0 }, reason: 'OBSTACLE' });
+  });
 });

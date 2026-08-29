@@ -22,6 +22,6 @@
 - `[x]` **Test (REASON)**: Rover crosses West edge (X < 0). Appears at X = max.
 
 ## Block 4: Obstacles & Result Pattern
-- `[ ]` **Test (REASON)**: Introduce `Obstacle` at specific coordinate in `Planet`.
+- `[x]` **Test (REASON)**: Introduce `Obstacle` at specific coordinate in `Planet`.
 - `[ ]` **Test (REASON)**: `Navigator` returns `success: false, reason: 'OBSTACLE'` when trying to move to obstacle coordinate.
 - `[ ]` **Test (REASON)**: Rover encounters obstacle, stops sequence, and returns `"X:x:y:D"` report format.
