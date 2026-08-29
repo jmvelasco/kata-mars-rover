@@ -3,8 +3,8 @@ import { Rover } from '../../domain/Rover';
 import { Navigator } from '../../domain/Navigator';
 import { Planet } from '../../domain/Planet';
 
-const createRover = (x: number, y: number, direction: string) => {
-  const planet = new Planet(10, 10, []);
+const createRover = (x: number, y: number, direction: string, obstacles: { x: number; y: number }[] = []) => {
+  const planet = new Planet(10, 10, obstacles);
   const navigator = new Navigator(planet);
   return new Rover(x, y, direction, navigator);
 };
@@ -86,5 +86,11 @@ describe('The Rover', () => {
     const rover = createRover(0, 0, 'W');
     const report = rover.execute('M');
     expect(report).toBe('9:0:W');
+  });
+
+  it('stops sequence and returns "O:x:y:D" report format when encountering obstacle', () => {
+    const rover = createRover(0, 0, 'N', [{ x: 0, y: 2 }]);
+    const report = rover.execute('MMM');
+    expect(report).toBe('O:0:1:N');
   });
 });
