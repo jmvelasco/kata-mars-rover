@@ -16,27 +16,14 @@ export class Rover {
   private processCommand(command: string): void {
     if (command === 'L') this.rotateLeft();
     if (command === 'R') this.rotateRight();
-    if (command === 'M') this.moveForward();
-    if (command === 'B') this.moveBackward();
+    if (command === 'M' || command === 'B') this.move(command);
   }
 
-  private moveForward(): void {
+  private move(movementType: string): void {
     const result = this.navigator.calculateNextPosition(
       { x: this.x, y: this.y },
       this.direction,
-      'M'
-    );
-    if (result.success) {
-      this.x = result.coordinate.x;
-      this.y = result.coordinate.y;
-    }
-  }
-
-  private moveBackward(): void {
-    const result = this.navigator.calculateNextPosition(
-      { x: this.x, y: this.y },
-      this.direction,
-      'B'
+      movementType
     );
     if (result.success) {
       this.x = result.coordinate.x;
