@@ -57,4 +57,10 @@ describe('The Rover', () => {
     const report = rover.execute('B');
     expect(report).toBe('0:0:N');
   });
+
+  it('moves Forward (M) facing East (X+1)', () => {
+    const rover = createRover(0, 0, 'E');
+    const report = rover.execute('M');
+    expect(report).toBe('1:0:E');
+  });
 });
