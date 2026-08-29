@@ -9,17 +9,26 @@ export class Rover {
   ) {}
 
   execute(commands: string): string {
-    commands.split('').forEach(command => this.processCommand(command));
-    return `${this.x}:${this.y}:${this.direction}`;
+    let obstacleHit = false;
+    for (const command of commands) {
+      if (!this.processCommand(command)) {
+        obstacleHit = true;
+        break;
+      }
+    }
+    const prefix = obstacleHit ? 'O:' : '';
+    return `${prefix}${this.x}:${this.y}:${this.direction}`;
   }
 
-  private processCommand(command: string): void {
+  private processCommand(command: string): boolean {
     if (command === 'L') this.rotateLeft();
-    if (command === 'R') this.rotateRight();
-    if (command === 'M' || command === 'B') this.move(command);
+    else if (command === 'R') this.rotateRight();
+    else if (command === 'M' || command === 'B') return this.move(command);
+    
+    return true;
   }
 
-  private move(movementType: string): void {
+  private move(movementType: string): boolean {
     const result = this.navigator.calculateNextPosition(
       { x: this.x, y: this.y },
       this.direction,
@@ -28,7 +37,9 @@ export class Rover {
     if (result.success) {
       this.x = result.coordinate.x;
       this.y = result.coordinate.y;
+      return true;
     }
+    return false;
   }
 
   private rotateLeft(): void {
