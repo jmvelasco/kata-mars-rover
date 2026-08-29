@@ -18,6 +18,8 @@ export class Navigator {
     else if (direction === 'E') x += step;
     else if (direction === 'W') x -= step;
 
+    if (y >= this.planet.height) y = 0;
+
     return { success: true, coordinate: { x, y } };
   }
 }
