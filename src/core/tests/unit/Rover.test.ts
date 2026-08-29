@@ -9,4 +9,12 @@ describe('The Rover', () => {
 
     expect(report).toBe('0:0:N');
   });
+
+  it('rotates Left (L) once from North to West', () => {
+    const rover = new Rover(0, 0, 'N');
+
+    const report = rover.execute('L');
+
+    expect(report).toBe('0:0:W');
+  });
 });
