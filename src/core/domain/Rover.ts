@@ -9,6 +9,9 @@ export class Rover {
     if (commands === 'L') {
       this.direction = 'W';
     }
+    if (commands === 'R') {
+      this.direction = 'E';
+    }
     return `${this.x}:${this.y}:${this.direction}`;
   }
 }
