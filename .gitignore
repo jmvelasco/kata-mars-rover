@@ -1,5 +1,9 @@
 node_modules
 lib
-.idea
 coverage
+*.tsbuildinfo
+.idea
 .DS_Store
+.agents
+AGENTS.md
+openspec/config.yaml
