@@ -10,12 +10,14 @@ export class Navigator {
   constructor(private readonly planet: Planet) {}
 
   calculateNextPosition(currentCoordinate: Coordinate, direction: string, movementType: string): NavigationResult {
-    let y = currentCoordinate.y;
-    if (movementType === 'M') {
-      y += 1;
-    } else if (movementType === 'B') {
-      y -= 1;
-    }
-    return { success: true, coordinate: { x: currentCoordinate.x, y } };
+    let { x, y } = currentCoordinate;
+    const step = movementType === 'M' ? 1 : -1;
+
+    if (direction === 'N') y += step;
+    else if (direction === 'S') y -= step;
+    else if (direction === 'E') x += step;
+    else if (direction === 'W') x -= step;
+
+    return { success: true, coordinate: { x, y } };
   }
 }
