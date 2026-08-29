@@ -25,4 +25,28 @@ describe('The Rover', () => {
 
     expect(report).toBe('0:0:E');
   });
+
+  it('processes multiple commands (LL) and rotates from North to South', () => {
+    const rover = new Rover(0, 0, 'N');
+
+    const report = rover.execute('LL');
+
+    expect(report).toBe('0:0:S');
+  });
+
+  it('rotates 360 degrees (LLLL) and returns to original direction', () => {
+    const rover = new Rover(0, 0, 'N');
+
+    const report = rover.execute('LLLL');
+
+    expect(report).toBe('0:0:N');
+  });
+
+  it('rotates 360 degrees (RRRR) and returns to original direction', () => {
+    const rover = new Rover(0, 0, 'N');
+
+    const report = rover.execute('RRRR');
+
+    expect(report).toBe('0:0:N');
+  });
 });
