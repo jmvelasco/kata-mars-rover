@@ -6,6 +6,6 @@ export class Rover {
   ) {}
 
   execute(commands: string): string {
-    return '';
+    return `${this.x}:${this.y}:${this.direction}`;
   }
 }
