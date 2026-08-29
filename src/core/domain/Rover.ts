@@ -16,6 +16,19 @@ export class Rover {
   private processCommand(command: string): void {
     if (command === 'L') this.rotateLeft();
     if (command === 'R') this.rotateRight();
+    if (command === 'M') this.moveForward();
+  }
+
+  private moveForward(): void {
+    const result = this.navigator.calculateNextPosition(
+      { x: this.x, y: this.y },
+      this.direction,
+      'M'
+    );
+    if (result.success) {
+      this.x = result.coordinate.x;
+      this.y = result.coordinate.y;
+    }
   }
 
   private rotateLeft(): void {
