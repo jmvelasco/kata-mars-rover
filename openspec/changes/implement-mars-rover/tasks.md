@@ -24,4 +24,5 @@
 ## Block 4: Obstacles & Result Pattern
 - `[x]` **Test (REASON)**: Introduce `Obstacle` at specific coordinate in `Planet`.
 - `[x]` **Test (REASON)**: `Navigator` returns `success: false, reason: 'OBSTACLE'` when trying to move to obstacle coordinate.
-- `[ ]` **Test (REASON)**: Rover encounters obstacle, stops sequence, and returns `"X:x:y:D"` report format.
+- `[x]` **Test (REASON)**: Rover encounters obstacle, stops sequence, and returns `"O:x:y:D"` report format.
+- `[x]` **Test (REASON)**: Ensure all tests pass and `NavigationResult` perfectly encapsulates success/failure.
