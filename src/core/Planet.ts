@@ -1,4 +1,4 @@
-import { Coordinate } from './Navigator';
+import { Coordinate } from './Coordinate';
 
 export class Planet {
   constructor(

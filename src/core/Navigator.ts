@@ -1,6 +1,6 @@
 import { Planet } from './Planet';
-
-export type Coordinate = { x: number; y: number };
+import { Coordinate } from './Coordinate';
+import { Direction } from './Direction';
 
 export type NavigationResult = {
   success: boolean;
@@ -11,14 +11,10 @@ export type NavigationResult = {
 export class Navigator {
   constructor(private readonly planet: Planet) {}
 
-  calculateNextPosition(currentCoordinate: Coordinate, direction: string, movementType: string): NavigationResult {
-    let { x, y } = currentCoordinate;
-    const step = movementType === 'M' ? 1 : -1;
-
-    if (direction === 'N') y += step;
-    else if (direction === 'S') y -= step;
-    else if (direction === 'E') x += step;
-    else if (direction === 'W') x -= step;
+  calculateNextPosition(currentCoordinate: Coordinate, direction: Direction, movementType: string): NavigationResult {
+    let nextCoordinate =
+      movementType === 'M' ? direction.moveForward(currentCoordinate) : direction.moveBackward(currentCoordinate);
+    let { x, y } = nextCoordinate;
 
     if (y >= this.planet.height) y = 0;
     else if (y < 0) y = this.planet.height - 1;

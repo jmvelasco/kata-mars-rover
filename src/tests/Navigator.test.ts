@@ -1,12 +1,13 @@
 import { Navigator } from '../core/Navigator';
 import { Planet } from '../core/Planet';
+import { createDirection } from '../core/Direction';
 
 describe('The Navigator', () => {
   it('calculates the next position forward facing North', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'N', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, createDirection('N'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 1 } });
   });
@@ -15,7 +16,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 1 }, 'N', 'B');
+    const result = navigator.calculateNextPosition({ x: 0, y: 1 }, createDirection('N'), 'B');
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
   });
@@ -24,7 +25,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'E', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, createDirection('E'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 1, y: 0 } });
   });
@@ -33,7 +34,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 9 }, 'N', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 9 }, createDirection('N'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
   });
@@ -42,7 +43,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'S', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, createDirection('S'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 9 } });
   });
@@ -51,7 +52,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 9, y: 0 }, 'E', 'M');
+    const result = navigator.calculateNextPosition({ x: 9, y: 0 }, createDirection('E'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 0, y: 0 } });
   });
@@ -60,7 +61,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, []);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'W', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, createDirection('W'), 'M');
 
     expect(result).toEqual({ success: true, coordinate: { x: 9, y: 0 } });
   });
@@ -69,7 +70,7 @@ describe('The Navigator', () => {
     const planet = new Planet(10, 10, [{ x: 0, y: 1 }]);
     const navigator = new Navigator(planet);
 
-    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, 'N', 'M');
+    const result = navigator.calculateNextPosition({ x: 0, y: 0 }, createDirection('N'), 'M');
 
     expect(result).toEqual({ success: false, coordinate: { x: 0, y: 0 }, reason: 'OBSTACLE' });
   });

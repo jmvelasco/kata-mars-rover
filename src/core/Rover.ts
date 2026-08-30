@@ -30,7 +30,7 @@ export class Rover {
   }
 
   private move(movementType: string): boolean {
-    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction.value, movementType);
+    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction, movementType);
     if (result.success) {
       this.x = result.coordinate.x;
       this.y = result.coordinate.y;

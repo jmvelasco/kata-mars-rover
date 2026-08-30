@@ -1,7 +1,11 @@
+import { Coordinate } from './Coordinate';
+
 export interface Direction {
   readonly value: string;
   turnLeft(): Direction;
   turnRight(): Direction;
+  moveForward(current: Coordinate): Coordinate;
+  moveBackward(current: Coordinate): Coordinate;
 }
 
 export class West implements Direction {
@@ -11,6 +15,12 @@ export class West implements Direction {
   }
   turnRight(): Direction {
     return new North();
+  }
+  moveForward(current: Coordinate): Coordinate {
+    return { x: current.x - 1, y: current.y };
+  }
+  moveBackward(current: Coordinate): Coordinate {
+    return { x: current.x + 1, y: current.y };
   }
 }
 
@@ -22,6 +32,12 @@ export class East implements Direction {
   turnRight(): Direction {
     return new South();
   }
+  moveForward(current: Coordinate): Coordinate {
+    return { x: current.x + 1, y: current.y };
+  }
+  moveBackward(current: Coordinate): Coordinate {
+    return { x: current.x - 1, y: current.y };
+  }
 }
 
 export class South implements Direction {
@@ -32,6 +48,12 @@ export class South implements Direction {
   turnRight(): Direction {
     return new West();
   }
+  moveForward(current: Coordinate): Coordinate {
+    return { x: current.x, y: current.y - 1 };
+  }
+  moveBackward(current: Coordinate): Coordinate {
+    return { x: current.x, y: current.y + 1 };
+  }
 }
 
 export class North implements Direction {
@@ -41,6 +63,12 @@ export class North implements Direction {
   }
   turnRight(): Direction {
     return new East();
+  }
+  moveForward(current: Coordinate): Coordinate {
+    return { x: current.x, y: current.y + 1 };
+  }
+  moveBackward(current: Coordinate): Coordinate {
+    return { x: current.x, y: current.y - 1 };
   }
 }
 
