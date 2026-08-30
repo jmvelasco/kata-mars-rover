@@ -3,6 +3,19 @@ import { Direction } from './Direction';
 import { Coordinate } from './Coordinate';
 
 export class Rover {
+  private readonly commands: Record<string, () => boolean> = {
+    L: () => {
+      this.direction = this.direction.turnLeft();
+      return true;
+    },
+    R: () => {
+      this.direction = this.direction.turnRight();
+      return true;
+    },
+    M: () => this.move('M'),
+    B: () => this.move('B'),
+  };
+
   constructor(
     private coordinate: Coordinate,
     private direction: Direction,
@@ -22,11 +35,8 @@ export class Rover {
   }
 
   private processCommand(command: string): boolean {
-    if (command === 'L') this.rotateLeft();
-    else if (command === 'R') this.rotateRight();
-    else if (command === 'M' || command === 'B') return this.move(command);
-
-    return true;
+    const action = this.commands[command];
+    return action ? action() : true;
   }
 
   private move(movementType: string): boolean {
@@ -36,13 +46,5 @@ export class Rover {
       return true;
     }
     return false;
-  }
-
-  private rotateLeft(): void {
-    this.direction = this.direction.turnLeft();
-  }
-
-  private rotateRight(): void {
-    this.direction = this.direction.turnRight();
   }
 }
