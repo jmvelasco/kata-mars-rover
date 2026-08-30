@@ -1,10 +1,10 @@
 import { Navigator } from './Navigator';
 import { Direction } from './Direction';
+import { Coordinate } from './Coordinate';
 
 export class Rover {
   constructor(
-    private x: number,
-    private y: number,
+    private coordinate: Coordinate,
     private direction: Direction,
     private readonly navigator: Navigator
   ) {}
@@ -18,7 +18,7 @@ export class Rover {
       }
     }
     const prefix = obstacleHit ? 'O:' : '';
-    return `${prefix}${this.x}:${this.y}:${this.direction.value}`;
+    return `${prefix}${this.coordinate.x}:${this.coordinate.y}:${this.direction.value}`;
   }
 
   private processCommand(command: string): boolean {
@@ -30,10 +30,9 @@ export class Rover {
   }
 
   private move(movementType: string): boolean {
-    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction, movementType);
+    const result = this.navigator.calculateNextPosition(this.coordinate, this.direction, movementType);
     if (result.success) {
-      this.x = result.coordinate.x;
-      this.y = result.coordinate.y;
+      this.coordinate = result.coordinate;
       return true;
     }
     return false;

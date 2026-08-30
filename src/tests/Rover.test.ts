@@ -6,7 +6,7 @@ import { createDirection } from '../core/Direction';
 const createRover = (x: number, y: number, direction: string, obstacles: { x: number; y: number }[] = []) => {
   const planet = new Planet(10, 10, obstacles);
   const navigator = new Navigator(planet);
-  return new Rover(x, y, createDirection(direction), navigator);
+  return new Rover({ x, y }, createDirection(direction), navigator);
 };
 
 describe('The Rover', () => {
