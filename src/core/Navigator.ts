@@ -12,15 +12,9 @@ export class Navigator {
   constructor(private readonly planet: Planet) {}
 
   calculateNextPosition(currentCoordinate: Coordinate, direction: Direction, movementType: string): NavigationResult {
-    let nextCoordinate =
+    const theoreticalCoordinate =
       movementType === 'M' ? direction.moveForward(currentCoordinate) : direction.moveBackward(currentCoordinate);
-    let { x, y } = nextCoordinate;
-
-    if (y >= this.planet.height) y = 0;
-    else if (y < 0) y = this.planet.height - 1;
-
-    if (x >= this.planet.width) x = 0;
-    else if (x < 0) x = this.planet.width - 1;
+    const { x, y } = this.planet.wrap(theoreticalCoordinate);
 
     if (this.planet.hasObstacleAt({ x, y })) {
       return { success: false, coordinate: currentCoordinate, reason: 'OBSTACLE' };
