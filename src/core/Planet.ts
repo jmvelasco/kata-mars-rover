@@ -11,6 +11,10 @@ export class Planet {
     return this.obstacles.some((obstacle) => obstacle.x === coordinate.x && obstacle.y === coordinate.y);
   }
 
+  isWithinBounds(coordinate: Coordinate): boolean {
+    return coordinate.x >= 0 && coordinate.x < this.width && coordinate.y >= 0 && coordinate.y < this.height;
+  }
+
   wrap(coordinate: Coordinate): Coordinate {
     let { x, y } = coordinate;
 

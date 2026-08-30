@@ -20,7 +20,11 @@ export class Rover {
     private coordinate: Coordinate,
     private direction: Direction,
     private readonly navigator: Navigator
-  ) {}
+  ) {
+    if (!this.navigator.isValidCoordinate(this.coordinate)) {
+      throw new Error('Position out of bounds');
+    }
+  }
 
   execute(commands: string): string {
     let obstacleHit = false;

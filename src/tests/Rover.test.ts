@@ -16,6 +16,10 @@ describe('The Rover', () => {
     expect(report).toBe('0:0:N');
   });
 
+  it('throws an error if initialized out of planetary bounds', () => {
+    expect(() => createRover(15, 15, 'N')).toThrow('Position out of bounds');
+  });
+
   it('rotates Left (L) once from North to West', () => {
     const rover = createRover(0, 0, 'N');
     const report = rover.execute('L');

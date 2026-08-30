@@ -11,6 +11,10 @@ export type NavigationResult = {
 export class Navigator {
   constructor(private readonly planet: Planet) {}
 
+  isValidCoordinate(coordinate: Coordinate): boolean {
+    return this.planet.isWithinBounds(coordinate);
+  }
+
   calculateNextPosition(currentCoordinate: Coordinate, direction: Direction, movementType: string): NavigationResult {
     const theoreticalCoordinate =
       movementType === 'M' ? direction.moveForward(currentCoordinate) : direction.moveBackward(currentCoordinate);
