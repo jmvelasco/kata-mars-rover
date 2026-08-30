@@ -1,10 +1,11 @@
 import { Navigator } from './Navigator';
+import { Direction } from './Direction';
 
 export class Rover {
   constructor(
     private x: number,
     private y: number,
-    private direction: string,
+    private direction: Direction,
     private readonly navigator: Navigator
   ) {}
 
@@ -17,7 +18,7 @@ export class Rover {
       }
     }
     const prefix = obstacleHit ? 'O:' : '';
-    return `${prefix}${this.x}:${this.y}:${this.direction}`;
+    return `${prefix}${this.x}:${this.y}:${this.direction.value}`;
   }
 
   private processCommand(command: string): boolean {
@@ -29,7 +30,7 @@ export class Rover {
   }
 
   private move(movementType: string): boolean {
-    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction, movementType);
+    const result = this.navigator.calculateNextPosition({ x: this.x, y: this.y }, this.direction.value, movementType);
     if (result.success) {
       this.x = result.coordinate.x;
       this.y = result.coordinate.y;
@@ -39,16 +40,10 @@ export class Rover {
   }
 
   private rotateLeft(): void {
-    if (this.direction === 'N') this.direction = 'W';
-    else if (this.direction === 'W') this.direction = 'S';
-    else if (this.direction === 'S') this.direction = 'E';
-    else if (this.direction === 'E') this.direction = 'N';
+    this.direction = this.direction.turnLeft();
   }
 
   private rotateRight(): void {
-    if (this.direction === 'N') this.direction = 'E';
-    else if (this.direction === 'E') this.direction = 'S';
-    else if (this.direction === 'S') this.direction = 'W';
-    else if (this.direction === 'W') this.direction = 'N';
+    this.direction = this.direction.turnRight();
   }
 }

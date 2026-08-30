@@ -43,3 +43,16 @@ export class North implements Direction {
     return new East();
   }
 }
+
+const directionMap: Record<string, () => Direction> = {
+  N: () => new North(),
+  S: () => new South(),
+  E: () => new East(),
+  W: () => new West(),
+};
+
+export const createDirection = (value: string): Direction => {
+  const creator = directionMap[value];
+  if (!creator) throw new Error(`Invalid direction: ${value}`);
+  return creator();
+};
