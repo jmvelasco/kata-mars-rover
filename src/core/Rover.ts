@@ -2,15 +2,20 @@ import { Navigator } from './Navigator';
 import { Direction } from './Direction';
 import { Coordinate } from './Coordinate';
 
+export type CommandResult = {
+  success: boolean;
+  reason?: 'OBSTACLE' | 'INVALID_COMMAND';
+};
+
 export class Rover {
-  private readonly commands: Record<string, () => boolean> = {
+  private readonly commands: Record<string, () => CommandResult> = {
     L: () => {
       this.direction = this.direction.turnLeft();
-      return true;
+      return { success: true };
     },
     R: () => {
       this.direction = this.direction.turnRight();
-      return true;
+      return { success: true };
     },
     M: () => this.move('M'),
     B: () => this.move('B'),
@@ -27,28 +32,28 @@ export class Rover {
   }
 
   execute(commands: string): string {
-    let obstacleHit = false;
+    let prefix = '';
     for (const command of commands) {
-      if (!this.processCommand(command)) {
-        obstacleHit = true;
+      const result = this.processCommand(command);
+      if (!result.success) {
+        prefix = `${result.reason}:`;
         break;
       }
     }
-    const prefix = obstacleHit ? 'O:' : '';
     return `${prefix}${this.coordinate.x}:${this.coordinate.y}:${this.direction.value}`;
   }
 
-  private processCommand(command: string): boolean {
+  private processCommand(command: string): CommandResult {
     const action = this.commands[command];
-    return action ? action() : true;
+    return action ? action() : { success: false, reason: 'INVALID_COMMAND' };
   }
 
-  private move(movementType: string): boolean {
+  private move(movementType: string): CommandResult {
     const result = this.navigator.calculateNextPosition(this.coordinate, this.direction, movementType);
     if (result.success) {
       this.coordinate = result.coordinate;
-      return true;
+      return { success: true };
     }
-    return false;
+    return { success: false, reason: result.reason };
   }
 }

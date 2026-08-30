@@ -92,9 +92,20 @@ describe('The Rover', () => {
     expect(report).toBe('9:0:W');
   });
 
-  it('stops sequence and returns "O:x:y:D" report format when encountering obstacle', () => {
-    const rover = createRover(0, 0, 'N', [{ x: 0, y: 2 }]);
-    const report = rover.execute('MMM');
-    expect(report).toBe('O:0:1:N');
+  it('stops sequence and returns "OBSTACLE:x:y:D" report format when encountering obstacle', () => {
+    const obstacles = [{ x: 0, y: 2 }];
+    const rover = createRover(0, 0, 'N', obstacles);
+
+    const report = rover.execute('MM');
+
+    expect(report).toBe('OBSTACLE:0:1:N');
+  });
+
+  it('stops sequence and returns "INVALID_COMMAND:x:y:D" when encountering an invalid command', () => {
+    const rover = createRover(0, 0, 'N');
+
+    const report = rover.execute('MXM');
+
+    expect(report).toBe('INVALID_COMMAND:0:1:N');
   });
 });
