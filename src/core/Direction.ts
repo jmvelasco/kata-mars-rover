@@ -5,7 +5,7 @@ export interface Direction {
 }
 
 export class West implements Direction {
-  public readonly value = '';
+  public readonly value = 'W';
   turnLeft(): Direction {
     return new South();
   }
@@ -15,7 +15,7 @@ export class West implements Direction {
 }
 
 export class East implements Direction {
-  public readonly value = '';
+  public readonly value = 'E';
   turnLeft(): Direction {
     return new North();
   }
@@ -25,7 +25,7 @@ export class East implements Direction {
 }
 
 export class South implements Direction {
-  public readonly value = '';
+  public readonly value = 'S';
   turnLeft(): Direction {
     return new East();
   }
@@ -35,7 +35,7 @@ export class South implements Direction {
 }
 
 export class North implements Direction {
-  public readonly value = '';
+  public readonly value = 'N';
   turnLeft(): Direction {
     return new West();
   }
