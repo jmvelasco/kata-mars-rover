@@ -26,6 +26,6 @@ export class North implements Direction {
     return new West();
   }
   turnRight(): Direction {
-    return null as unknown as Direction;
+    return new East();
   }
 }
