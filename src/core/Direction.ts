@@ -5,19 +5,28 @@ export interface Direction {
 
 export class West implements Direction {
   turnLeft(): Direction {
-    return this;
+    return null as unknown as Direction;
   }
   turnRight(): Direction {
-    return this;
+    return null as unknown as Direction;
   }
 }
 
 export class East implements Direction {
   turnLeft(): Direction {
-    return this;
+    return null as unknown as Direction;
   }
   turnRight(): Direction {
-    return this;
+    return null as unknown as Direction;
+  }
+}
+
+export class South implements Direction {
+  turnLeft(): Direction {
+    return null as unknown as Direction;
+  }
+  turnRight(): Direction {
+    return null as unknown as Direction;
   }
 }
 
