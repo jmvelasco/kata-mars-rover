@@ -10,6 +10,6 @@ export class West implements Direction {
 
 export class North implements Direction {
   turnLeft(): Direction {
-    return null as unknown as Direction;
+    return new West();
   }
 }
