@@ -1,6 +1,9 @@
 import { North, West, East, South } from '../core/Direction';
 
 describe('The North Direction', () => {
+  it('has value N', () => {
+    expect(new North().value).toBe('N');
+  });
   it('turns left to West', () => {
     const north = new North();
     expect(north.turnLeft()).toBeInstanceOf(West);
@@ -12,6 +15,9 @@ describe('The North Direction', () => {
 });
 
 describe('The South Direction', () => {
+  it('has value S', () => {
+    expect(new South().value).toBe('S');
+  });
   it('turns left to East', () => {
     const south = new South();
     expect(south.turnLeft()).toBeInstanceOf(East);
@@ -23,6 +29,9 @@ describe('The South Direction', () => {
 });
 
 describe('The East Direction', () => {
+  it('has value E', () => {
+    expect(new East().value).toBe('E');
+  });
   it('turns left to North', () => {
     const east = new East();
     expect(east.turnLeft()).toBeInstanceOf(North);
@@ -34,6 +43,9 @@ describe('The East Direction', () => {
 });
 
 describe('The West Direction', () => {
+  it('has value W', () => {
+    expect(new West().value).toBe('W');
+  });
   it('turns left to South', () => {
     const west = new West();
     expect(west.turnLeft()).toBeInstanceOf(South);
