@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "nodenext",
     "lib": ["ES2020"],
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "jsx": "react",
     "outDir": "./lib",
     "rootDir": "./src",
@@ -23,6 +23,7 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
+    "isolatedModules": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "declaration": true,
