@@ -1,5 +1,7 @@
 import { Coordinates } from './Coordinates';
 
+const wrapped = (value: number, length: number): number => ((value % length) + length) % length;
+
 export class Planet {
   constructor(
     public readonly width: number,
@@ -7,6 +9,6 @@ export class Planet {
   ) {}
 
   resolve(coordinates: Coordinates): Coordinates {
-    return new Coordinates(coordinates.x % this.width, coordinates.y % this.height);
+    return new Coordinates(wrapped(coordinates.x, this.width), wrapped(coordinates.y, this.height));
   }
 }
