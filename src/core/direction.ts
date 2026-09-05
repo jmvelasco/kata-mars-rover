@@ -11,6 +11,14 @@ export class Direction {
     return new Direction(1);
   }
 
+  static south(): Direction {
+    return new Direction(2);
+  }
+
+  static west(): Direction {
+    return new Direction(3);
+  }
+
   turnRight(): Direction {
     return new Direction((this.index + 1) % directions.length);
   }
