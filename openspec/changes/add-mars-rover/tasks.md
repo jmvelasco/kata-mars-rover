@@ -70,13 +70,13 @@
 
 ## 8. Command parsing at the boundary
 
-- [ ] 8.1 🔴🟢 Text made only of `L`, `R`, `M` and `B` yields the same commands in order. Spec: `command-parsing` — *Recognised command vocabulary*. 🏛️ Earlier tests pass typed command lists directly and stay valid; the factory only adds a text entry point.
-- [ ] 8.2 🔴🟢 Empty text yields an empty sequence and is not rejected.
-- [ ] 8.3 🔴🟢 An unknown character rejects the whole sequence and the rover does not move.
-- [ ] 8.4 🔴🟢 The rejection identifies the offending character.
-- [ ] 8.5 🔴🟢 `F` and lowercase letters are unknown characters. ✂️ `coding-standards`: one concept, one name — `M` is the only forward command.
-- [ ] 8.6 🔵 REFACTOR checkpoint — ✂️ no magic strings: the command type is a literal union, and the rover's signature accepts only already-valid commands.
-- [ ] 8.7 ✅ `bun run compile` before marking the group done.
+- [x] 8.1 🔴🟢 Text made only of `L`, `R`, `M` and `B` yields the same commands in order. Spec: `command-parsing` — *Recognised command vocabulary*. 🏛️ Earlier tests pass typed command lists directly and stay valid; the factory only adds a text entry point.
+- [x] 8.2 🔴🟢 Empty text yields an empty sequence and is not rejected.
+- [x] 8.3 🔴🟢 An unknown character rejects the whole sequence and the rover does not move.
+- [x] 8.4 🔴🟢 The rejection identifies the offending character.
+- [x] 8.5 🔴🟢 `F` and lowercase letters are unknown characters. ✂️ `coding-standards`: one concept, one name — `M` is the only forward command.
+- [x] 8.6 🔵 REFACTOR checkpoint — ✂️ no magic strings: the command type is a literal union, and the rover's signature accepts only already-valid commands.
+- [x] 8.7 ✅ `bun run compile` before marking the group done.
 
 ## 9. Closing the cycle
 
