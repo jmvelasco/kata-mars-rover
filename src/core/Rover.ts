@@ -1,6 +1,17 @@
 import { Command } from './Command';
 import { Position } from './Position';
 
+const positionAfterExecuting = (command: Command, position: Position): Position => {
+  const outcomeOf: Record<Command, (from: Position) => Position> = {
+    [Command.TurnLeft]: (from) => from.turnedLeft(),
+    [Command.TurnRight]: (from) => from.turnedRight(),
+    [Command.MoveForward]: (from) => from.movedForward(),
+    [Command.MoveBackward]: (from) => from.movedBackward(),
+  };
+
+  return outcomeOf[command](position);
+};
+
 export class Rover {
   private currentPosition: Position;
 
@@ -14,22 +25,7 @@ export class Rover {
 
   execute(commands: Command[]): void {
     commands.forEach((command) => {
-      if (command === Command.MoveBackward) {
-        this.currentPosition = this.currentPosition.movedBackward();
-        return;
-      }
-
-      if (command === Command.MoveForward) {
-        this.currentPosition = this.currentPosition.movedForward();
-        return;
-      }
-
-      if (command === Command.TurnRight) {
-        this.currentPosition = this.currentPosition.turnedRight();
-        return;
-      }
-
-      this.currentPosition = this.currentPosition.turnedLeft();
+      this.currentPosition = positionAfterExecuting(command, this.currentPosition);
     });
   }
 }
