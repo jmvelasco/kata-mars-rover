@@ -40,14 +40,14 @@
 
 ## 5. The spherical surface
 
-- [ ] 5.1 🔴🟢 Introduce the surface with independent width and height; a coordinate inside the grid resolves unchanged. 🔵 Then thread the surface through rover construction, keeping every earlier test green — behaviour is unchanged, so update call sites only, never assertions.
-- [ ] 5.2 🔴🟢 Crossing the north edge reappears on the south one. Spec: `spherical-grid` — *Crossing an edge reappears on the opposite one*.
-- [ ] 5.3 🔴🟢 Crossing the east, south and west edges.
-- [ ] 5.4 🔴🟢 Moving backward also wraps.
-- [ ] 5.5 🔴🟢 Each axis wraps around its own length on a non-square surface.
-- [ ] 5.6 🔴🟢 Coordinates beyond an edge are normalised when the rover is placed, including negative ones. Spec: `spherical-grid` — *No coordinate is ever outside the surface*. 🎯 `design.md`: the same rule serves movement and placement — no range validation is added.
-- [ ] 5.7 🔵 REFACTOR checkpoint — ✂️ Law of Demeter and Tell-Don't-Ask: the rover must not know the grid dimensions; the surface must not know about orientations.
-- [ ] 5.8 ✅ `bun run compile` before marking the group done.
+- [x] 5.1 🔴🟢 Introduce the surface with independent width and height; a coordinate inside the grid resolves unchanged. 🔵 Then thread the surface through rover construction, keeping every earlier test green — behaviour is unchanged, so update call sites only, never assertions.
+- [x] 5.2 🔴🟢 Crossing the north edge reappears on the south one. Spec: `spherical-grid` — *Crossing an edge reappears on the opposite one*.
+- [x] 5.3 🔴🟢 Crossing the east, south and west edges.
+- [x] 5.4 🔴🟢 Moving backward also wraps.
+- [x] 5.5 🔴🟢 Each axis wraps around its own length on a non-square surface.
+- [x] 5.6 🔴🟢 Coordinates beyond an edge are normalised when the rover is placed, including negative ones. Spec: `spherical-grid` — *No coordinate is ever outside the surface*. 🎯 `design.md`: the same rule serves movement and placement — no range validation is added.
+- [x] 5.7 🔵 REFACTOR checkpoint — ✂️ Law of Demeter and Tell-Don't-Ask: the rover must not know the grid dimensions; the surface must not know about orientations.
+- [x] 5.8 ✅ `bun run compile` before marking the group done.
 
 ## 6. Obstacles
 
