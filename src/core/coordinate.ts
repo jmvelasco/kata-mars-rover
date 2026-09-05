@@ -11,4 +11,8 @@ export class Coordinate {
   equals(other: Coordinate): boolean {
     return this.x === other.x && this.y === other.y;
   }
+
+  add(dx: number, dy: number): Coordinate {
+    return Coordinate.of(this.x + dx, this.y + dy);
+  }
 }
