@@ -7,6 +7,6 @@ export class Planet {
   ) {}
 
   resolve(coordinates: Coordinates): Coordinates {
-    return coordinates;
+    return new Coordinates(coordinates.x % this.width, coordinates.y % this.height);
   }
 }
