@@ -14,6 +14,11 @@ export class Rover {
 
   execute(commands: Command[]): void {
     commands.forEach((command) => {
+      if (command === Command.MoveForward) {
+        this.currentPosition = this.currentPosition.movedForward();
+        return;
+      }
+
       if (command === Command.TurnRight) {
         this.currentPosition = this.currentPosition.turnedRight();
         return;

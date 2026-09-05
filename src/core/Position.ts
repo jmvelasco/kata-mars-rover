@@ -28,4 +28,8 @@ export class Position {
 
     return new Position(this.coordinates, rightOf[this.direction]);
   }
+
+  movedForward(): Position {
+    return new Position(this.coordinates.movedNorth(), this.direction);
+  }
 }
