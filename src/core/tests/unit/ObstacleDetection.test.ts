@@ -85,4 +85,14 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(1, 1), Direction.South));
   });
+
+  it('turns away and moves again in a later sequence after being blocked', () => {
+    const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
+    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+    rover.execute([Command.MoveForward, Command.MoveForward, Command.MoveForward]);
+
+    const report = rover.execute([Command.TurnRight, Command.MoveForward]);
+
+    expect(report).toEqual(new MissionReport(new Position(new Coordinates(1, 1), Direction.East)));
+  });
 });
