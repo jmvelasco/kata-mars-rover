@@ -27,4 +27,19 @@ describe('The Rover', () => {
       new MissionReport(new Position(new Coordinates(0, 1), Direction.North), new Coordinates(0, 2))
     );
   });
+
+  it('discards the commands left in the sequence once it is blocked', () => {
+    const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
+    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+
+    rover.execute([
+      Command.MoveForward,
+      Command.MoveForward,
+      Command.TurnRight,
+      Command.MoveForward,
+      Command.MoveForward,
+    ]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(0, 1), Direction.North));
+  });
 });
