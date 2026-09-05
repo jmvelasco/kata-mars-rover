@@ -22,10 +22,10 @@
 > 📏 Rules: coding-standards (VO equality, immutability)
 > 📖 Spec: `specs/rover/initialization/spec.md` — coordinate representation
 
-- [ ] 3.1 🔴🟢 Create `Coordinate` VO — stores x, y and supports equality comparison. Create `src/core/coordinate.ts`. Verify test passes.
-- [ ] 3.2 🔴🟢 Coordinate can add a delta (dx, dy) and return a new Coordinate. Verify test passes.
-- [ ] 3.3 🔵 Refactor if needed. Verify tests remain green.
-- [ ] 3.4 Run `bun run format:fix` and `bun run validate`. 🔧 *format, validate*
+- [x] 3.1 🔴🟢 Create `Coordinate` VO — stores x, y and supports equality comparison. Create `src/core/coordinate.ts`. Verify test passes.
+- [x] 3.2 🔴🟢 Coordinate can add a delta (dx, dy) and return a new Coordinate. Verify test passes.
+- [x] 3.3 🔵 Refactor if needed. Verify tests remain green.
+- [x] 3.4 Run `bun run format:fix` and `bun run validate`. 🔧 *format, validate*
 
 ## 4. MarsMap Value Object
 
