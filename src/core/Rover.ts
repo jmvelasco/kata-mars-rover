@@ -9,7 +9,7 @@ export class Rover {
     landingPosition: Position,
     private readonly planet: Planet
   ) {
-    this.currentPosition = landingPosition.movedTo(planet.resolve(landingPosition.coordinates));
+    this.currentPosition = landingPosition.movedTo(planet.resolve(landingPosition.cell()));
   }
 
   position(): Position {

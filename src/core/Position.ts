@@ -3,16 +3,12 @@ import { Direction } from './Direction';
 
 export class Position {
   constructor(
-    public readonly coordinates: Coordinates,
-    public readonly direction: Direction
+    private readonly coordinates: Coordinates,
+    private readonly direction: Direction
   ) {}
 
-  turnedLeft(): Position {
-    return new Position(this.coordinates, this.direction.turnedLeft());
-  }
-
-  turnedRight(): Position {
-    return new Position(this.coordinates, this.direction.turnedRight());
+  cell(): Coordinates {
+    return this.coordinates;
   }
 
   cellAhead(): Coordinates {
@@ -21,6 +17,14 @@ export class Position {
 
   cellBehind(): Coordinates {
     return this.direction.behind(this.coordinates);
+  }
+
+  turnedLeft(): Position {
+    return new Position(this.coordinates, this.direction.turnedLeft());
+  }
+
+  turnedRight(): Position {
+    return new Position(this.coordinates, this.direction.turnedRight());
   }
 
   movedTo(coordinates: Coordinates): Position {
