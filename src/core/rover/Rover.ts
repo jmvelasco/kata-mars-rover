@@ -10,7 +10,6 @@ export class Rover {
   ) {}
 
   getPosition(): Position {
-    void this.grid; // Suppress TS6138 until used
     return this.position;
   }
 
@@ -25,6 +24,14 @@ export class Rover {
       }
       if (command === 'R') {
         this.direction = this.direction.turnRight();
+      }
+      if (command === 'F') {
+        this.position = this.grid.nextPosition(this.position, this.direction.forwardVector());
+      }
+      if (command === 'B') {
+        const forward = this.direction.forwardVector();
+        const backward = new Position(-forward.x, -forward.y);
+        this.position = this.grid.nextPosition(this.position, backward);
       }
     });
   }
