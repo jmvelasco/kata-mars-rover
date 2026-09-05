@@ -22,6 +22,10 @@ export class Rover {
     let report = new MissionReport(this.currentPosition);
 
     commands.forEach((command) => {
+      if (report.isBlocked()) {
+        return;
+      }
+
       report = this.reportOfExecuting(command, report.position);
       this.currentPosition = report.position;
     });

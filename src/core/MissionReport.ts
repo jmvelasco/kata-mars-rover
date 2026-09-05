@@ -6,4 +6,8 @@ export class MissionReport {
     public readonly position: Position,
     public readonly obstacle?: Coordinates
   ) {}
+
+  isBlocked(): boolean {
+    return this.obstacle !== undefined;
+  }
 }
