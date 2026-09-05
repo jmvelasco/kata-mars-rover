@@ -1,6 +1,6 @@
 ## 1. Scaffolding
 
-- [ ] 1.1 Remove placeholder files (`src/core/sum.ts`, `src/tests/sum.test.ts`) and create `src/tests/unit/rover.test.ts` with an empty describe block. Verify `bun run validate` passes with zero tests. 🔧 *coding-standards, testing-standards*
+- [x] 1.1 Remove placeholder files (`src/core/sum.ts`, `src/tests/sum.test.ts`) and create `src/tests/unit/rover.test.ts` with an empty describe block. Verify `bun run validate` passes with zero tests. 🔧 *coding-standards, testing-standards*
 
 ## 2. Direction Value Object
 
