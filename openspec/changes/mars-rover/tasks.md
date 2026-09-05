@@ -8,13 +8,13 @@
 > 📏 Rules: coding-standards (rich model, Tell Don't Ask), tdd (TPP)
 > 📖 Spec: `specs/rover/commands/spec.md` — turn behavior
 
-- [ ] 2.1 🔴🟢 Create `Direction` VO — turning right from N yields E. Create `src/core/direction.ts` with minimum to pass. Verify test passes.
-- [ ] 2.2 🔴🟢 Turn right cycles through all four directions (E→S, S→W, W→N). Verify tests pass.
-- [ ] 2.3 🔴🟢 Turn left from N yields W. Verify test passes.
-- [ ] 2.4 🔴🟢 Turn left cycles through all four directions. Verify tests pass.
-- [ ] 2.5 🔴🟢 Direction provides a movement delta — N returns (0,+1), E returns (+1,0), S returns (0,−1), W returns (−1,0). Verify tests pass.
-- [ ] 2.6 🔵 Refactor Direction if needed — review naming, remove duplication. Verify tests remain green.
-- [ ] 2.7 Run `bun run format:fix` and `bun run validate` to confirm compilation, lint, and tests. 🔧 *format, validate*
+- [x] 2.1 🔴🟢 Create `Direction` VO — turning right from N yields E. Create `src/core/direction.ts` with minimum to pass. Verify test passes.
+- [x] 2.2 🔴🟢 Turn right cycles through all four directions (E→S, S→W, W→N). Verify tests pass.
+- [x] 2.3 🔴🟢 Turn left from N yields W. Verify test passes.
+- [x] 2.4 🔴🟢 Turn left cycles through all four directions. Verify tests pass.
+- [x] 2.5 🔴🟢 Direction provides a movement delta — N returns (0,+1), E returns (+1,0), S returns (0,−1), W returns (−1,0). Verify tests pass.
+- [x] 2.6 🔵 Refactor Direction if needed — review naming, remove duplication. Verify tests remain green.
+- [x] 2.7 Run `bun run format:fix` and `bun run validate` to confirm compilation, lint, and tests. 🔧 *format, validate*
 
 ## 3. Coordinate Value Object
 

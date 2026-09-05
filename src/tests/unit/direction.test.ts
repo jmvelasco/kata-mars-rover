@@ -6,7 +6,7 @@ import { Direction } from '../../core/direction';
 // - [x] Turn right cycles through all four directions
 // - [x] Turn left from N yields W
 // - [x] Turn left cycles through all four directions
-// - [ ] Direction provides movement delta
+// - [x] Direction provides movement delta
 
 describe('The Direction', () => {
   it('faces east after turning right from north', () => {
