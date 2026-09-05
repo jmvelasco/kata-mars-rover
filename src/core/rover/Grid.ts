@@ -18,7 +18,6 @@ export class Grid {
   }
 
   hasObstacle(position: Position): boolean {
-    void position;
-    return false;
+    return this.obstacles.some((obstacle) => obstacle.equals(position));
   }
 }
