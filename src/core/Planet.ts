@@ -7,6 +7,6 @@ export class Planet {
   ) {}
 
   resolve(coordinates: Coordinates): Coordinates {
-    return coordinates.movedBy(1, 1);
+    return coordinates;
   }
 }
