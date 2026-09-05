@@ -42,4 +42,13 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(0, 1), Direction.North));
   });
+
+  it('stops on the last free cell when an obstacle blocks its retreat', () => {
+    const planet = new Planet(5, 5, [new Coordinates(2, 1)]);
+    const rover = new Rover(new Position(new Coordinates(2, 3), Direction.North), planet);
+
+    rover.execute([Command.MoveBackward, Command.MoveBackward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.North));
+  });
 });
