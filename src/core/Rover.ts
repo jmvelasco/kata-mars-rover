@@ -8,6 +8,10 @@ export class Rover {
   private currentPosition: Position;
 
   static land(landingPosition: Position, planet: Planet): Rover {
+    if (planet.hasObstacleAt(planet.resolve(landingPosition.cell()))) {
+      throw new Error('Cannot land on a cell occupied by an obstacle');
+    }
+
     return new Rover(landingPosition, planet);
   }
 
