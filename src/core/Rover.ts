@@ -7,6 +7,13 @@ import { Position } from './Position';
 export class Rover {
   private currentPosition: Position;
 
+  private constructor(
+    landingPosition: Position,
+    private readonly planet: Planet
+  ) {
+    this.currentPosition = landingPosition;
+  }
+
   static land(landingPosition: Position, planet: Planet): Rover {
     const landingCell = planet.resolve(landingPosition.cell());
 
@@ -15,13 +22,6 @@ export class Rover {
     }
 
     return new Rover(landingPosition.movedTo(landingCell), planet);
-  }
-
-  private constructor(
-    landingPosition: Position,
-    private readonly planet: Planet
-  ) {
-    this.currentPosition = landingPosition;
   }
 
   position(): Position {
