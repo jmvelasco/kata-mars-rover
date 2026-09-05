@@ -13,4 +13,12 @@ describe('The Rover', () => {
 
     expect(landing).toThrow('Cannot land on a cell occupied by an obstacle');
   });
+
+  it('refuses to land at coordinates that name an occupied cell once wrapped', () => {
+    const planet = new Planet(5, 5, [new Coordinates(1, 1)]);
+
+    const landing = () => Rover.land(new Position(new Coordinates(6, 6), Direction.North), planet);
+
+    expect(landing).toThrow('Cannot land on a cell occupied by an obstacle');
+  });
 });
