@@ -1,16 +1,20 @@
 import { Command } from './Command';
-import { Coordinates } from './Coordinates';
-import { Direction } from './Direction';
 import { Position } from './Position';
 
 export class Rover {
-  constructor(public readonly landingPosition: Position) {}
+  private currentPosition: Position;
+
+  constructor(landingPosition: Position) {
+    this.currentPosition = landingPosition;
+  }
 
   position(): Position {
-    return new Position(new Coordinates(0, 0), Direction.North);
+    return this.currentPosition;
   }
 
   execute(commands: Command[]): void {
-    commands.forEach(() => {});
+    commands.forEach(() => {
+      this.currentPosition = this.currentPosition.turnedLeft();
+    });
   }
 }

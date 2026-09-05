@@ -6,4 +6,8 @@ export class Position {
     public readonly coordinates: Coordinates,
     public readonly direction: Direction
   ) {}
+
+  turnedLeft(): Position {
+    return new Position(this.coordinates, Direction.West);
+  }
 }
