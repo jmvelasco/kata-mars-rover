@@ -18,22 +18,27 @@ export class Rover {
   }
 
   execute(commands: string): string {
-    commands.split('').forEach((command) => {
+    for (const command of commands) {
       if (command === 'L') {
         this.direction = this.direction.turnLeft();
-      }
-      if (command === 'R') {
+      } else if (command === 'R') {
         this.direction = this.direction.turnRight();
-      }
-      if (command === 'F') {
-        this.position = this.grid.nextPosition(this.position, this.direction.forwardVector());
-      }
-      if (command === 'B') {
+      } else if (command === 'F') {
+        const next = this.grid.nextPosition(this.position, this.direction.forwardVector());
+        if (this.grid.hasObstacle(next)) {
+          return `O:${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
+        }
+        this.position = next;
+      } else if (command === 'B') {
         const forward = this.direction.forwardVector();
         const backward = new Position(-forward.x, -forward.y);
-        this.position = this.grid.nextPosition(this.position, backward);
+        const next = this.grid.nextPosition(this.position, backward);
+        if (this.grid.hasObstacle(next)) {
+          return `O:${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
+        }
+        this.position = next;
       }
-    });
-    return '';
+    }
+    return `${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
   }
 }
