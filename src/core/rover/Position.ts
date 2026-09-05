@@ -5,7 +5,6 @@ export class Position {
   ) {}
 
   equals(other: Position): boolean {
-    void other;
-    return false;
+    return this.x === other.x && this.y === other.y;
   }
 }
