@@ -7,8 +7,12 @@ export class Grid {
   ) {}
 
   nextPosition(current: Position, vector: Position): Position {
-    void current;
-    void vector;
-    return new Position(0, 0);
+    const rawX = current.x + vector.x;
+    const rawY = current.y + vector.y;
+
+    const wrappedX = ((rawX % this.width) + this.width) % this.width;
+    const wrappedY = ((rawY % this.height) + this.height) % this.height;
+
+    return new Position(wrappedX, wrappedY);
   }
 }
