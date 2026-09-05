@@ -19,18 +19,25 @@ export class Rover {
   }
 
   execute(commands: Command[]): MissionReport {
-    let report = new MissionReport(this.currentPosition);
-
-    commands.forEach((command) => {
-      if (report.isBlocked()) {
-        return;
-      }
-
-      report = this.reportOfExecuting(command, report.position);
-      this.currentPosition = report.position;
-    });
+    const report = this.reportOfExecutingAll(commands, this.currentPosition);
+    this.currentPosition = report.position;
 
     return report;
+  }
+
+  private reportOfExecutingAll(commands: Command[], from: Position): MissionReport {
+    if (commands.length === 0) {
+      return new MissionReport(from);
+    }
+
+    const [nextCommand, ...remainingCommands] = commands;
+    const report = this.reportOfExecuting(nextCommand, from);
+
+    if (report.isBlocked()) {
+      return report;
+    }
+
+    return this.reportOfExecutingAll(remainingCommands, report.position);
   }
 
   private reportOfExecuting(command: Command, from: Position): MissionReport {
