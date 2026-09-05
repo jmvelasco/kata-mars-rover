@@ -52,4 +52,15 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 4), Direction.North));
   });
+
+  it.each([
+    { beyond: 'the east edge', placedAt: new Coordinates(12, 3), reportedAt: new Coordinates(2, 3) },
+    { beyond: 'the west edge', placedAt: new Coordinates(-1, 0), reportedAt: new Coordinates(4, 0) },
+  ])('reports a normalised position when it is placed beyond $beyond', ({ placedAt, reportedAt }) => {
+    const rover = new Rover(new Position(placedAt, Direction.North), new Planet(5, 5));
+
+    const position = rover.position();
+
+    expect(position).toEqual(new Position(reportedAt, Direction.North));
+  });
 });
