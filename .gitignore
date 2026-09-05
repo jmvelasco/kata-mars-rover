@@ -6,3 +6,5 @@ coverage
 CLAUDE.md 
 .claude
 openspec/config.yaml
+.agents
+AGENTS.md
