@@ -4,3 +4,5 @@ export enum Command {
   MoveForward = 'M',
   MoveBackward = 'B',
 }
+
+export const parseCommands = (text: string): Command[] => text.split('').map(() => Command.TurnLeft);
