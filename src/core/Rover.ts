@@ -1,5 +1,6 @@
 import { Command } from './Command';
 import { Coordinates } from './Coordinates';
+import { MissionReport } from './MissionReport';
 import { Planet } from './Planet';
 import { Position } from './Position';
 
@@ -17,10 +18,12 @@ export class Rover {
     return this.currentPosition;
   }
 
-  execute(commands: Command[]): void {
+  execute(commands: Command[]): MissionReport {
     commands.forEach((command) => {
       this.currentPosition = this.positionAfterExecuting(command, this.currentPosition);
     });
+
+    return new MissionReport(this.currentPosition);
   }
 
   private positionAfterExecuting(command: Command, position: Position): Position {
