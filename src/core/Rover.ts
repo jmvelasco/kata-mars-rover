@@ -15,7 +15,7 @@ export class Rover {
     return new Rover(landingPosition, planet);
   }
 
-  constructor(
+  private constructor(
     landingPosition: Position,
     private readonly planet: Planet
   ) {

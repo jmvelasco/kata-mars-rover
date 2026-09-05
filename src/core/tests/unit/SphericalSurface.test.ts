@@ -26,7 +26,7 @@ describe('The Planet', () => {
 
 describe('The Rover', () => {
   it('reappears on the south edge after crossing the north one', () => {
-    const rover = new Rover(new Position(new Coordinates(2, 4), Direction.North), new Planet(5, 5));
+    const rover = Rover.land(new Position(new Coordinates(2, 4), Direction.North), new Planet(5, 5));
 
     rover.execute([Command.MoveForward]);
 
@@ -38,7 +38,7 @@ describe('The Rover', () => {
     { edge: 'south', from: new Coordinates(2, 0), facing: Direction.South, reappearsAt: new Coordinates(2, 4) },
     { edge: 'west', from: new Coordinates(0, 2), facing: Direction.West, reappearsAt: new Coordinates(4, 2) },
   ])('reappears on the opposite edge after crossing the $edge one', ({ from, facing, reappearsAt }) => {
-    const rover = new Rover(new Position(from, facing), new Planet(5, 5));
+    const rover = Rover.land(new Position(from, facing), new Planet(5, 5));
 
     rover.execute([Command.MoveForward]);
 
@@ -46,7 +46,7 @@ describe('The Rover', () => {
   });
 
   it('reappears on the opposite edge when it crosses one moving backward', () => {
-    const rover = new Rover(new Position(new Coordinates(2, 0), Direction.North), new Planet(5, 5));
+    const rover = Rover.land(new Position(new Coordinates(2, 0), Direction.North), new Planet(5, 5));
 
     rover.execute([Command.MoveBackward]);
 
@@ -57,7 +57,7 @@ describe('The Rover', () => {
     { beyond: 'the east edge', placedAt: new Coordinates(12, 3), reportedAt: new Coordinates(2, 3) },
     { beyond: 'the west edge', placedAt: new Coordinates(-1, 0), reportedAt: new Coordinates(4, 0) },
   ])('reports a normalised position when it is placed beyond $beyond', ({ placedAt, reportedAt }) => {
-    const rover = new Rover(new Position(placedAt, Direction.North), new Planet(5, 5));
+    const rover = Rover.land(new Position(placedAt, Direction.North), new Planet(5, 5));
 
     const position = rover.position();
 

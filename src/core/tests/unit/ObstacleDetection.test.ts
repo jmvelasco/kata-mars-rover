@@ -10,7 +10,7 @@ import { Rover } from '../../Rover';
 describe('The Rover', () => {
   it('stops on the last free cell when an obstacle blocks its advance', () => {
     const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), planet);
 
     rover.execute([Command.MoveForward, Command.MoveForward, Command.MoveForward]);
 
@@ -19,7 +19,7 @@ describe('The Rover', () => {
 
   it('reports the obstacle that blocked the sequence', () => {
     const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), planet);
 
     const report = rover.execute([Command.MoveForward, Command.MoveForward, Command.MoveForward]);
 
@@ -30,7 +30,7 @@ describe('The Rover', () => {
 
   it('discards the commands left in the sequence once it is blocked', () => {
     const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), planet);
 
     rover.execute([
       Command.MoveForward,
@@ -45,7 +45,7 @@ describe('The Rover', () => {
 
   it('stops on the last free cell when an obstacle blocks its retreat', () => {
     const planet = new Planet(5, 5, [new Coordinates(2, 1)]);
-    const rover = new Rover(new Position(new Coordinates(2, 3), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(2, 3), Direction.North), planet);
 
     rover.execute([Command.MoveBackward, Command.MoveBackward]);
 
@@ -54,7 +54,7 @@ describe('The Rover', () => {
 
   it('is blocked by an obstacle sitting across a connected edge', () => {
     const planet = new Planet(5, 5, [new Coordinates(2, 0)]);
-    const rover = new Rover(new Position(new Coordinates(2, 4), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(2, 4), Direction.North), planet);
 
     rover.execute([Command.MoveForward]);
 
@@ -62,7 +62,7 @@ describe('The Rover', () => {
   });
 
   it('reports no obstacle when it completes the whole sequence', () => {
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), new Planet(5, 5));
+    const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), new Planet(5, 5));
 
     const report = rover.execute([Command.MoveForward, Command.MoveForward]);
 
@@ -76,7 +76,7 @@ describe('The Rover', () => {
       new Coordinates(1, 0),
       new Coordinates(0, 1),
     ];
-    const rover = new Rover(
+    const rover = Rover.land(
       new Position(new Coordinates(1, 1), Direction.North),
       new Planet(3, 3, surroundingObstacles)
     );
@@ -88,7 +88,7 @@ describe('The Rover', () => {
 
   it('turns away and moves again in a later sequence after being blocked', () => {
     const planet = new Planet(5, 5, [new Coordinates(0, 2)]);
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), planet);
+    const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), planet);
     rover.execute([Command.MoveForward, Command.MoveForward, Command.MoveForward]);
 
     const report = rover.execute([Command.TurnRight, Command.MoveForward]);
