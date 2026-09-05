@@ -1,14 +1,16 @@
 import { Direction } from './Direction';
 import { Position } from './Position';
+import { North } from './North';
+import { South } from './South';
 
 export class East implements Direction {
   turnLeft(): Direction {
-    return this;
+    return new North();
   }
   turnRight(): Direction {
-    return this;
+    return new South();
   }
   forwardVector(): Position {
-    return new Position(0, 0);
+    return new Position(1, 0);
   }
 }
