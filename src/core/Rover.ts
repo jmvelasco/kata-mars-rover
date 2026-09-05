@@ -1,4 +1,5 @@
 import { Command } from './Command';
+import { Coordinates } from './Coordinates';
 import { Planet } from './Planet';
 import { Position } from './Position';
 
@@ -26,10 +27,20 @@ export class Rover {
     const outcomeOf: Record<Command, (from: Position) => Position> = {
       [Command.TurnLeft]: (from) => from.turnedLeft(),
       [Command.TurnRight]: (from) => from.turnedRight(),
-      [Command.MoveForward]: (from) => from.movedTo(this.planet.resolve(from.cellAhead())),
-      [Command.MoveBackward]: (from) => from.movedTo(this.planet.resolve(from.cellBehind())),
+      [Command.MoveForward]: (from) => this.positionAfterMovingTo(from.cellAhead(), from),
+      [Command.MoveBackward]: (from) => this.positionAfterMovingTo(from.cellBehind(), from),
     };
 
     return outcomeOf[command](position);
+  }
+
+  private positionAfterMovingTo(target: Coordinates, from: Position): Position {
+    const landing = this.planet.resolve(target);
+
+    if (this.planet.hasObstacleAt(landing)) {
+      return from;
+    }
+
+    return from.movedTo(landing);
   }
 }

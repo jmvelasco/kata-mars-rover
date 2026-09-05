@@ -4,6 +4,10 @@ export class Coordinates {
     private readonly y: number
   ) {}
 
+  equals(other: Coordinates): boolean {
+    return this.x === other.x && this.y === other.y;
+  }
+
   movedBy(deltaX: number, deltaY: number): Coordinates {
     return new Coordinates(this.x + deltaX, this.y + deltaY);
   }

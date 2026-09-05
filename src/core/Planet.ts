@@ -12,6 +12,6 @@ export class Planet {
   }
 
   hasObstacleAt(coordinates: Coordinates): boolean {
-    return this.obstacles.includes(coordinates);
+    return this.obstacles.some((obstacle) => obstacle.equals(coordinates));
   }
 }
