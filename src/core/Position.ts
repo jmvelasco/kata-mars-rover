@@ -39,4 +39,8 @@ export class Position {
 
     return new Position(cellAhead[this.direction](), this.direction);
   }
+
+  movedBackward(): Position {
+    return new Position(this.coordinates.movedSouth(), this.direction);
+  }
 }
