@@ -19,6 +19,13 @@ export class Position {
   }
 
   turnedRight(): Position {
-    return new Position(this.coordinates, Direction.East);
+    const rightOf: Record<Direction, Direction> = {
+      [Direction.North]: Direction.East,
+      [Direction.East]: Direction.South,
+      [Direction.South]: Direction.West,
+      [Direction.West]: Direction.North,
+    };
+
+    return new Position(this.coordinates, rightOf[this.direction]);
   }
 }
