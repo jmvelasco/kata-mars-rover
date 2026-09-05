@@ -1,4 +1,5 @@
 import { describe, it, expect } from '@jest/globals';
+import { Command } from '../../Command';
 import { Coordinates } from '../../Coordinates';
 import { Direction } from '../../Direction';
 import { Position } from '../../Position';
@@ -56,5 +57,13 @@ describe('The Rover', () => {
     const position = rover.position();
 
     expect(position).toEqual(new Position(new Coordinates(0, 0), Direction.North));
+  });
+
+  it('faces west after turning left from north', () => {
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+
+    rover.execute([Command.TurnLeft]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.West));
   });
 });
