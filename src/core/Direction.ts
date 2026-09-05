@@ -31,8 +31,8 @@ export class Direction {
 
   private rotatedBy(quarterTurns: number): Direction {
     const ring = Direction.clockwiseRing;
-    const quarterTurnsInRing = (ring.indexOf(this) + quarterTurns + ring.length) % ring.length;
+    const positionInRing = (ring.indexOf(this) + quarterTurns + ring.length) % ring.length;
 
-    return ring[quarterTurnsInRing];
+    return ring[positionInRing];
   }
 }
