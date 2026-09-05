@@ -7,4 +7,16 @@ export class Coordinates {
   movedNorth(): Coordinates {
     return new Coordinates(this.x, this.y + 1);
   }
+
+  movedEast(): Coordinates {
+    return new Coordinates(this.x + 1, this.y);
+  }
+
+  movedSouth(): Coordinates {
+    return new Coordinates(this.x, this.y - 1);
+  }
+
+  movedWest(): Coordinates {
+    return new Coordinates(this.x - 1, this.y);
+  }
 }

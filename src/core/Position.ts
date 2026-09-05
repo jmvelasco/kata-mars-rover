@@ -30,6 +30,13 @@ export class Position {
   }
 
   movedForward(): Position {
-    return new Position(this.coordinates.movedNorth(), this.direction);
+    const cellAhead: Record<Direction, () => Coordinates> = {
+      [Direction.North]: () => this.coordinates.movedNorth(),
+      [Direction.East]: () => this.coordinates.movedEast(),
+      [Direction.South]: () => this.coordinates.movedSouth(),
+      [Direction.West]: () => this.coordinates.movedWest(),
+    };
+
+    return new Position(cellAhead[this.direction](), this.direction);
   }
 }
