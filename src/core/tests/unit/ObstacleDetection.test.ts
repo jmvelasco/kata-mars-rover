@@ -51,4 +51,13 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.North));
   });
+
+  it('is blocked by an obstacle sitting across a connected edge', () => {
+    const planet = new Planet(5, 5, [new Coordinates(2, 0)]);
+    const rover = new Rover(new Position(new Coordinates(2, 4), Direction.North), planet);
+
+    rover.execute([Command.MoveForward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 4), Direction.North));
+  });
 });
