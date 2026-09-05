@@ -17,7 +17,7 @@ export class Rover {
     return this.direction;
   }
 
-  execute(commands: string): void {
+  execute(commands: string): string {
     commands.split('').forEach((command) => {
       if (command === 'L') {
         this.direction = this.direction.turnLeft();
@@ -34,5 +34,6 @@ export class Rover {
         this.position = this.grid.nextPosition(this.position, backward);
       }
     });
+    return '';
   }
 }

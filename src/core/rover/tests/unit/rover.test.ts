@@ -55,8 +55,21 @@ describe('The Rover', () => {
     const direction = new North();
     const rover = new Rover(position, direction, grid);
 
-    rover.execute('B');
+    const result = rover.execute('B');
 
     expect(rover.getPosition().equals(new Position(2, 1))).toBe(true);
+    expect(result).toBe('2:1:N');
+  });
+
+  it('stops at obstacle and reports it', () => {
+    const grid = new Grid(10, 10, [new Position(2, 4)]);
+    const position = new Position(2, 2);
+    const direction = new North();
+    const rover = new Rover(position, direction, grid);
+
+    const result = rover.execute('FFF');
+
+    expect(rover.getPosition().equals(new Position(2, 3))).toBe(true);
+    expect(result).toBe('O:2:3:N');
   });
 });
