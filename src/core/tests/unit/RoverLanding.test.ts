@@ -21,4 +21,12 @@ describe('The Rover', () => {
 
     expect(landing).toThrow('Cannot land on a cell occupied by an obstacle');
   });
+
+  it('refuses to land on the cell that an obstacle named beyond an edge occupies', () => {
+    const planet = new Planet(5, 5, [new Coordinates(7, 2)]);
+
+    const landing = () => Rover.land(new Position(new Coordinates(2, 2), Direction.North), planet);
+
+    expect(landing).toThrow('Cannot land on a cell occupied by an obstacle');
+  });
 });
