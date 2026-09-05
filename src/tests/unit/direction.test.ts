@@ -44,4 +44,11 @@ describe('The Direction', () => {
     expect(south.turnLeft().equals(east)).toBe(true);
     expect(east.turnLeft().equals(Direction.north())).toBe(true);
   });
+
+  it('provides movement delta for each cardinal direction', () => {
+    expect(Direction.north().delta()).toEqual({ dx: 0, dy: 1 });
+    expect(Direction.east().delta()).toEqual({ dx: 1, dy: 0 });
+    expect(Direction.south().delta()).toEqual({ dx: 0, dy: -1 });
+    expect(Direction.west().delta()).toEqual({ dx: -1, dy: 0 });
+  });
 });
