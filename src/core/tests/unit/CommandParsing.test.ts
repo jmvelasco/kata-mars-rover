@@ -1,5 +1,10 @@
 import { describe, it, expect } from '@jest/globals';
 import { Command, parseCommands } from '../../Command';
+import { Coordinates } from '../../Coordinates';
+import { Direction } from '../../Direction';
+import { Planet } from '../../Planet';
+import { Position } from '../../Position';
+import { Rover } from '../../Rover';
 
 describe('The Command Sequence', () => {
   it('turns the text of known commands into those commands in the same order', () => {
@@ -16,5 +21,16 @@ describe('The Command Sequence', () => {
     const commands = parseCommands(text);
 
     expect(commands).toEqual([]);
+  });
+});
+
+describe('The Rover', () => {
+  it('does not move when the sequence contains an unknown character', () => {
+    const rover = Rover.land(new Position(new Coordinates(2, 2), Direction.North), new Planet(5, 5));
+
+    const mission = () => rover.execute(parseCommands('MMXR'));
+
+    expect(mission).toThrow('Unknown command');
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.North));
   });
 });
