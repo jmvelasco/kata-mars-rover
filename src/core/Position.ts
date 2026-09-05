@@ -8,6 +8,13 @@ export class Position {
   ) {}
 
   turnedLeft(): Position {
-    return new Position(this.coordinates, Direction.West);
+    const leftOf: Record<Direction, Direction> = {
+      [Direction.North]: Direction.West,
+      [Direction.West]: Direction.South,
+      [Direction.South]: Direction.East,
+      [Direction.East]: Direction.North,
+    };
+
+    return new Position(this.coordinates, leftOf[this.direction]);
   }
 }
