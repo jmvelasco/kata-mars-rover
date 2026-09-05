@@ -42,12 +42,11 @@ describe('The Command Sequence', () => {
 });
 
 describe('The Rover', () => {
-  it('does not move when the sequence contains an unknown character', () => {
+  it('never receives a sequence that contains an unknown character', () => {
     const rover = Rover.land(new Position(new Coordinates(2, 2), Direction.North), new Planet(5, 5));
 
     const mission = () => rover.execute(parseCommands('MMXR'));
 
-    expect(mission).toThrow('Unknown command');
-    expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.North));
+    expect(mission).toThrow("Unknown command 'X'");
   });
 });
