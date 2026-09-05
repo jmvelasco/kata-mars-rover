@@ -64,9 +64,9 @@
 
 ## 7. Guarded placement
 
-- [ ] 7.1 🔴🟢 Placing the rover on an occupied cell is refused. ✂️ `coding-standards` on classes: private constructor plus a factory method, since real validation now exists.
-- [ ] 7.2 🔴🟢 The refusal considers the wrapped coordinates, so `(6, 6)` on a 5x5 surface is refused when `(1, 1)` is occupied.
-- [ ] 7.3 ✅ `bun run compile` before marking the group done.
+- [x] 7.1 🔴🟢 Placing the rover on an occupied cell is refused. ✂️ `coding-standards` on classes: private constructor plus a factory method, since real validation now exists.
+- [x] 7.2 🔴🟢 The refusal considers the wrapped coordinates, so `(6, 6)` on a 5x5 surface is refused when `(1, 1)` is occupied.
+- [x] 7.3 ✅ `bun run compile` before marking the group done.
 
 ## 8. Command parsing at the boundary
 
