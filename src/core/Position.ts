@@ -17,4 +17,8 @@ export class Position {
 
     return new Position(this.coordinates, leftOf[this.direction]);
   }
+
+  turnedRight(): Position {
+    return new Position(this.coordinates, Direction.East);
+  }
 }

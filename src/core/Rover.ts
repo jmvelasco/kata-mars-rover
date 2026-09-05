@@ -13,7 +13,12 @@ export class Rover {
   }
 
   execute(commands: Command[]): void {
-    commands.forEach(() => {
+    commands.forEach((command) => {
+      if (command === Command.TurnRight) {
+        this.currentPosition = this.currentPosition.turnedRight();
+        return;
+      }
+
       this.currentPosition = this.currentPosition.turnedLeft();
     });
   }
