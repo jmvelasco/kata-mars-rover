@@ -14,6 +14,14 @@ describe('The Planet', () => {
 
     expect(resolved).toEqual(new Coordinates(4, 2));
   });
+
+  it('wraps each axis around its own length', () => {
+    const planet = new Planet(5, 3);
+
+    const resolved = planet.resolve(new Coordinates(5, 3));
+
+    expect(resolved).toEqual(new Coordinates(0, 0));
+  });
 });
 
 describe('The Rover', () => {
