@@ -8,18 +8,20 @@ export class Rover {
   private currentPosition: Position;
 
   static land(landingPosition: Position, planet: Planet): Rover {
-    if (planet.hasObstacleAt(planet.resolve(landingPosition.cell()))) {
+    const landingCell = planet.resolve(landingPosition.cell());
+
+    if (planet.hasObstacleAt(landingCell)) {
       throw new Error('Cannot land on a cell occupied by an obstacle');
     }
 
-    return new Rover(landingPosition, planet);
+    return new Rover(landingPosition.movedTo(landingCell), planet);
   }
 
   private constructor(
     landingPosition: Position,
     private readonly planet: Planet
   ) {
-    this.currentPosition = landingPosition.movedTo(planet.resolve(landingPosition.cell()));
+    this.currentPosition = landingPosition;
   }
 
   position(): Position {
