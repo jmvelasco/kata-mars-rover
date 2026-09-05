@@ -68,4 +68,21 @@ describe('The Rover', () => {
 
     expect(report).toEqual(new MissionReport(new Position(new Coordinates(0, 2), Direction.North)));
   });
+
+  it('still turns when it is surrounded by obstacles', () => {
+    const surroundingObstacles = [
+      new Coordinates(1, 2),
+      new Coordinates(2, 1),
+      new Coordinates(1, 0),
+      new Coordinates(0, 1),
+    ];
+    const rover = new Rover(
+      new Position(new Coordinates(1, 1), Direction.North),
+      new Planet(3, 3, surroundingObstacles)
+    );
+
+    rover.execute([Command.TurnRight, Command.TurnRight]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(1, 1), Direction.South));
+  });
 });
