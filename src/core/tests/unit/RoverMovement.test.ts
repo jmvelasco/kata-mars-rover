@@ -25,4 +25,12 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(ahead, start));
   });
+
+  it('retreats one cell south when moving backward facing north', () => {
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+
+    rover.execute([Command.MoveBackward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 1), Direction.North));
+  });
 });
