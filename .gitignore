@@ -3,6 +3,6 @@ lib
 .idea
 coverage
 .DS_Store
-AGENTS.md
 .agents
+AGENTS.md
 openspec/config.yaml
