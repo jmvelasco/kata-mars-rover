@@ -60,4 +60,12 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 4), Direction.North));
   });
+
+  it('reports no obstacle when it completes the whole sequence', () => {
+    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), new Planet(5, 5));
+
+    const report = rover.execute([Command.MoveForward, Command.MoveForward]);
+
+    expect(report).toEqual(new MissionReport(new Position(new Coordinates(0, 2), Direction.North)));
+  });
 });
