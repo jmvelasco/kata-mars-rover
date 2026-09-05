@@ -75,7 +75,7 @@
 - [x] 8.3 🔴🟢 An unknown character rejects the whole sequence and the rover does not move.
 - [x] 8.4 🔴🟢 The rejection identifies the offending character.
 - [x] 8.5 🔴🟢 `F` and lowercase letters are unknown characters. ✂️ `coding-standards`: one concept, one name — `M` is the only forward command.
-- [x] 8.6 🔵 REFACTOR checkpoint — ✂️ no magic strings: the command type is a literal union, and the rover's signature accepts only already-valid commands.
+- [x] 8.6 🔵 REFACTOR checkpoint — ✂️ no magic strings: the command type is a closed vocabulary (a TypeScript enum), and the rover's signature accepts only already-valid commands.
 - [x] 8.7 ✅ `bun run compile` before marking the group done.
 
 ## 9. Closing the cycle

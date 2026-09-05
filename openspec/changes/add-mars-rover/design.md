@@ -81,7 +81,7 @@ src/core/
 ├── Position.ts         coordinates + orientation (value object)
 ├── Coordinates.ts      value object
 ├── Direction.ts        value object
-├── Command.ts          literal union + parsing factory
+├── Command.ts          command vocabulary (enum) + parsing factory
 ├── MissionReport.ts    final position + optional obstacle
 └── tests/unit/         one test file per behaviour block
 ```
