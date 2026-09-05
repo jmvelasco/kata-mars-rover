@@ -17,7 +17,7 @@ export const parseCommands = (text: string): Command[] => {
     const command = commandOf[character];
 
     if (command === undefined) {
-      throw new Error('Unknown command');
+      throw new Error(`Unknown command '${character}'`);
     }
 
     return command;
