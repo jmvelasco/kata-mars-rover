@@ -51,16 +51,16 @@
 
 ## 6. Obstacles
 
-- [ ] 6.1 🔴🟢 An obstacle directly ahead stops the advance and the rover keeps the last valid cell. Spec: `obstacle-detection` — *An obstacle prevents the rover from entering a cell*.
-- [ ] 6.2 🔴🟢 The report of a blocked sequence carries the obstacle coordinates. 🎯 `design.md`: an obstacle is business data, never an exception. ⚠️ Documented CQS exception — `execute` mutates and returns.
-- [ ] 6.3 🔴🟢 A block discards every remaining command, turns included.
-- [ ] 6.4 🔴🟢 An obstacle behind stops the retreat.
-- [ ] 6.5 🔴🟢 An obstacle across a connected edge also blocks. ⚠️ The bug this catches: resolving occupancy **before** wrapping passes 6.1 and fails here.
-- [ ] 6.6 🔴🟢 A completed sequence reports no obstacle.
-- [ ] 6.7 🔴🟢 A surrounded rover can still turn — turning is never blocked.
-- [ ] 6.8 🔴🟢 A blocked rover can turn away and move in a later sequence; no sticky blocked state.
-- [ ] 6.9 🔵 REFACTOR — resolve the early-abort iteration shape left open in 🎯 `design.md`: `for...of` with `break` (✂️ `coding-standards` §12, readability first) or recursion (📏 TPP #9, pure). ⚠️ A `reduce` that keeps iterating over a blocked rover lies about the intent — reject it.
-- [ ] 6.10 ✅ `bun run compile` before marking the group done.
+- [x] 6.1 🔴🟢 An obstacle directly ahead stops the advance and the rover keeps the last valid cell. Spec: `obstacle-detection` — *An obstacle prevents the rover from entering a cell*.
+- [x] 6.2 🔴🟢 The report of a blocked sequence carries the obstacle coordinates. 🎯 `design.md`: an obstacle is business data, never an exception. ⚠️ Documented CQS exception — `execute` mutates and returns.
+- [x] 6.3 🔴🟢 A block discards every remaining command, turns included.
+- [x] 6.4 🔴🟢 An obstacle behind stops the retreat.
+- [x] 6.5 🔴🟢 An obstacle across a connected edge also blocks. ⚠️ The bug this catches: resolving occupancy **before** wrapping passes 6.1 and fails here.
+- [x] 6.6 🔴🟢 A completed sequence reports no obstacle.
+- [x] 6.7 🔴🟢 A surrounded rover can still turn — turning is never blocked.
+- [x] 6.8 🔴🟢 A blocked rover can turn away and move in a later sequence; no sticky blocked state.
+- [x] 6.9 🔵 REFACTOR — resolve the early-abort iteration shape left open in 🎯 `design.md`: `for...of` with `break` (✂️ `coding-standards` §12, readability first) or recursion (📏 TPP #9, pure). ⚠️ A `reduce` that keeps iterating over a blocked rover lies about the intent — reject it.
+- [x] 6.10 ✅ `bun run compile` before marking the group done.
 
 ## 7. Guarded placement
 
