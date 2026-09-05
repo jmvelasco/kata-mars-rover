@@ -3,7 +3,7 @@ import { Coordinate } from '../../core/coordinate';
 
 // TODO List:
 // - [x] Coordinate stores x, y with equality
-// - [ ] Coordinate adds delta and returns new Coordinate
+// - [x] Coordinate adds delta and returns new Coordinate
 
 describe('The Coordinate', () => {
   it('is equal to another coordinate with the same x and y', () => {
