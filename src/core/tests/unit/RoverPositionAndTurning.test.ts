@@ -78,4 +78,12 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), expected));
   });
+
+  it('faces east after turning right from north', () => {
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+
+    rover.execute([Command.TurnRight]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.East));
+  });
 });
