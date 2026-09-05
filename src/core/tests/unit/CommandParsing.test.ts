@@ -31,6 +31,14 @@ describe('The Command Sequence', () => {
     expect(parsing).toThrow("Unknown command 'X'");
   });
 
+  it('rejects the sequence wherever the unknown character appears', () => {
+    const text = 'MMR!';
+
+    const parsing = () => parseCommands(text);
+
+    expect(parsing).toThrow("Unknown command '!'");
+  });
+
   it.each([
     { unknown: 'F', text: 'F' },
     { unknown: 'm', text: 'mm' },
