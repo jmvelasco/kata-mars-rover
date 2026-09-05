@@ -4,8 +4,8 @@ import { Direction } from '../../core/direction';
 // TODO List:
 // - [x] Turning right from N yields E
 // - [x] Turn right cycles through all four directions
-// - [ ] Turn left from N yields W
-// - [ ] Turn left cycles through all four directions
+// - [x] Turn left from N yields W
+// - [x] Turn left cycles through all four directions
 // - [ ] Direction provides movement delta
 
 describe('The Direction', () => {
@@ -25,5 +25,23 @@ describe('The Direction', () => {
     expect(east.turnRight().equals(south)).toBe(true);
     expect(south.turnRight().equals(west)).toBe(true);
     expect(west.turnRight().equals(Direction.north())).toBe(true);
+  });
+
+  it('faces west after turning left from north', () => {
+    const direction = Direction.north();
+
+    const turned = direction.turnLeft();
+
+    expect(turned.equals(Direction.west())).toBe(true);
+  });
+
+  it('cycles through all directions when turning left', () => {
+    const west = Direction.west();
+    const south = Direction.south();
+    const east = Direction.east();
+
+    expect(west.turnLeft().equals(south)).toBe(true);
+    expect(south.turnLeft().equals(east)).toBe(true);
+    expect(east.turnLeft().equals(Direction.north())).toBe(true);
   });
 });

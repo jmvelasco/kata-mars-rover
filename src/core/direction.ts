@@ -23,6 +23,10 @@ export class Direction {
     return new Direction((this.index + 1) % directions.length);
   }
 
+  turnLeft(): Direction {
+    return new Direction((this.index - 1 + directions.length) % directions.length);
+  }
+
   equals(other: Direction): boolean {
     return this.index === other.index;
   }
