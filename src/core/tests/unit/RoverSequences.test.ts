@@ -27,4 +27,13 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 2), Direction.East));
   });
+
+  it('continues the next sequence from where the previous one ended', () => {
+    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North));
+
+    rover.execute([Command.MoveForward, Command.MoveForward]);
+    rover.execute([Command.TurnRight, Command.MoveForward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(1, 2), Direction.East));
+  });
 });
