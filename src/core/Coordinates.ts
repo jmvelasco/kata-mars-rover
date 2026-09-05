@@ -4,19 +4,7 @@ export class Coordinates {
     public readonly y: number
   ) {}
 
-  movedNorth(): Coordinates {
-    return new Coordinates(this.x, this.y + 1);
-  }
-
-  movedEast(): Coordinates {
-    return new Coordinates(this.x + 1, this.y);
-  }
-
-  movedSouth(): Coordinates {
-    return new Coordinates(this.x, this.y - 1);
-  }
-
-  movedWest(): Coordinates {
-    return new Coordinates(this.x - 1, this.y);
+  movedBy(deltaX: number, deltaY: number): Coordinates {
+    return new Coordinates(this.x + deltaX, this.y + deltaY);
   }
 }
