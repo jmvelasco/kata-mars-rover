@@ -9,4 +9,12 @@ describe('The Command Sequence', () => {
 
     expect(commands).toEqual([Command.TurnLeft, Command.TurnRight, Command.MoveForward, Command.MoveBackward]);
   });
+
+  it('accepts an empty text and yields no commands', () => {
+    const text = '';
+
+    const commands = parseCommands(text);
+
+    expect(commands).toEqual([]);
+  });
 });
