@@ -11,4 +11,14 @@ describe('The Grid', () => {
 
     expect(nextPosition.equals(new Position(5, 0))).toBe(true);
   });
+
+  it('identifies an obstacle at a specific position', () => {
+    const grid = new Grid(10, 10, [new Position(2, 2)]);
+    expect(grid.hasObstacle(new Position(2, 2))).toBe(true);
+  });
+
+  it('does not identify an obstacle when the position is clear', () => {
+    const grid = new Grid(10, 10, [new Position(2, 2)]);
+    expect(grid.hasObstacle(new Position(3, 3))).toBe(false);
+  });
 });

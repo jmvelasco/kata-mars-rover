@@ -3,7 +3,8 @@ import { Position } from './Position';
 export class Grid {
   constructor(
     public readonly width: number,
-    public readonly height: number
+    public readonly height: number,
+    public readonly obstacles: Position[] = []
   ) {}
 
   nextPosition(current: Position, vector: Position): Position {
@@ -14,5 +15,10 @@ export class Grid {
     const wrappedY = ((rawY % this.height) + this.height) % this.height;
 
     return new Position(wrappedX, wrappedY);
+  }
+
+  hasObstacle(position: Position): boolean {
+    void position;
+    return false;
   }
 }
