@@ -84,5 +84,5 @@
 - [x] 9.2 🔵 Final REFACTOR pass against ✂️ `coding-standards`: function size and single responsibility, guard clauses, affirmative conditions, no collection mutation, constants close to their use.
 - [x] 9.3 🏛️ Verify the architectural invariant: `src/core` still imports nothing external. No ports, no adapters, no application layer were introduced — 📐 YAGNI, per `proposal.md` — Non-goals.
 - [x] 9.4 ✅ Run `bun run validate` (compile + lint + test) and confirm the 80% coverage threshold in `jest.config.js` is met.
-- [ ] 9.5 👀 Run the `code-reviewer` subagent, as required by 📘 `CLAUDE.md` — *Commands and Subagents*, and address its findings.
-- [ ] 9.6 📋 Report back to the Tech Lead: decisions taken during the REFACTOR steps (3.5, 6.9) and anything the cycle revealed that the specs did not anticipate.
+- [x] 9.5 👀 Run the `code-reviewer` subagent, as required by 📘 `CLAUDE.md` — *Commands and Subagents*, and address its findings.
+- [x] 9.6 📋 Report back to the Tech Lead: decisions taken during the REFACTOR steps (3.5, 6.9) and anything the cycle revealed that the specs did not anticipate.
