@@ -100,5 +100,12 @@ src/core/
 └── rover.ts           # Entity: mutable, executes commands
 
 src/tests/unit/
-└── rover.test.ts      # All kata tests in TDD progression
+├── direction.test.ts          # Direction VO: turns and movement deltas
+├── coordinate.test.ts         # Coordinate VO: equality and arithmetic
+├── marsMap.test.ts            # MarsMap VO: wrapping and obstacle detection
+├── rover-movement.test.ts     # Rover: forward, backward, sequences, state persistence
+├── rover-wrapping.test.ts     # Rover: spherical grid boundary crossing
+└── rover-obstacles.test.ts    # Rover: obstacle detection, abort, reporting
 ```
+
+One test file per behavior block, each mapping to a capability/spec. The VOs get their own test files because they have independent, testable behavior (Direction turns, Coordinate arithmetic, MarsMap wrapping). The Rover tests are split by concern rather than bundled into a single file.

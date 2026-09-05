@@ -448,3 +448,70 @@ Todos los artefactos se encuentran en `openspec/changes/mars-rover/`:
 | Tasks | `tasks.md` | 9 grupos de tareas TDD ordenadas inside-out |
 
 **Estado**: ✅ Todos los artefactos completos. Listo para implementar con `/opsx-apply`.
+
+---
+
+## Anexo A: Revisión post-exploración — Estructura de archivos de test
+
+*Discusión del 5 de septiembre de 2026, antes de la implementación.*
+
+### Pregunta del Tech Lead
+
+> Al final del artefacto `design.md` está la file structure, no sé por qué hay un único archivo de test.
+
+La estructura propuesta en el design.md era:
+
+```
+src/tests/unit/
+└── rover.test.ts      # All kata tests in TDD progression
+```
+
+### Análisis presentado
+
+Se identificaron dos opciones:
+
+**Opción A: Un solo archivo** (lo que se propuso)
+
+```
+src/tests/unit/
+└── rover.test.ts
+```
+
+- Argumento: La kata trata de un solo sujeto — el Rover. Un `describe('The Rover')` que progresa en bloques anidados refleja la narrativa TDD de forma lineal.
+- Problema: A medida que crecen los tests (giros + movimiento + wrapping + obstáculos + parsing), el archivo se vuelve largo y difícil de navegar. Mezcla comportamientos de dominio distintos.
+
+**Opción B: Un archivo por bloque de comportamiento**
+
+```
+src/tests/unit/
+├── rover-positioning.test.ts     # Inicialización y giros
+├── rover-movement.test.ts        # Avance, retroceso, secuencias
+├── rover-wrapping.test.ts        # Superficie esférica
+├── rover-obstacles.test.ts       # Detección de obstáculos
+└── command-parsing.test.ts       # Parsing de comandos
+```
+
+- Argumento: Cada archivo mapea a una capability/spec. Más fácil de localizar, más cohesivo.
+- Además: Los testing-standards dicen que los tests viven dentro de cada módulo. Si tenemos 4+ archivos de producción (`Direction`, `Coordinate`, `MarsMap`, `Rover`), tener un solo archivo de test para todos ellos rompe esa correspondencia.
+
+**Valoración del agente**: La Opción B es mejor.
+
+### Cuestionamiento del Tech Lead
+
+> No entiendo: si tu valoración es que B es mejor, que coincido, ¿por qué asumiste sin siquiera preguntar hacerlo siguiendo la opción A? ¿Ha sido por alguna regla o solo por el contexto inicial del boilerplate del proyecto?
+
+### Aclaración del agente
+
+No hubo ninguna regla que justificara la Opción A. Fue un error por dos motivos:
+
+1. **Inercia del boilerplate**: El proyecto tenía un solo `sum.test.ts` y se arrastró esa estructura sin cuestionarla. Se copió el patrón existente en vez de razonar sobre lo que el dominio necesitaba.
+
+2. **Violación de la regla de consulta del AGENTS.md**: Las instrucciones dicen textualmente *"If any aspect is not deterministic, stop and ask the Tech Lead before proceeding"*. La organización de los archivos de test era una decisión de diseño no trivial que debió haberse presentado como opciones — exactamente como se hizo con la mutabilidad del rover o el reporte de obstáculos.
+
+No fue una decisión deliberada. Fue una asunción que no se sometió a escrutinio. Lo correcto habría sido presentar A y B durante la exploración, igual que se hizo con las demás decisiones.
+
+### Decisión
+
+> **✅ Decisión tomada: Opción B — Un archivo de test por bloque de comportamiento.**
+>
+> Pendiente de actualizar el `design.md` con la corrección.
