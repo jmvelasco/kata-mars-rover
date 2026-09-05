@@ -32,11 +32,11 @@
 
 ## 4. Sequences and state persistence
 
-- [ ] 4.1 🔴🟢 An empty sequence leaves the rover untouched. 📏 TPP: the degenerate case first.
-- [ ] 4.2 🔴🟢 A sequence is executed command by command in order.
-- [ ] 4.3 🔴🟢 A second sequence continues from where the first one ended. Spec: `rover-navigation` — *The rover keeps its position between sequences*. 🏛️ This is the one place the entity mutates: a single private reassignment, value objects stay immutable.
-- [ ] 4.4 🔵 REFACTOR checkpoint — ✂️ `coding-standards` on CQS: the mutation must be confined; every calculation around it stays pure.
-- [ ] 4.5 ✅ `bun run compile` before marking the group done.
+- [x] 4.1 🔴🟢 An empty sequence leaves the rover untouched. 📏 TPP: the degenerate case first.
+- [x] 4.2 🔴🟢 A sequence is executed command by command in order.
+- [x] 4.3 🔴🟢 A second sequence continues from where the first one ended. Spec: `rover-navigation` — *The rover keeps its position between sequences*. 🏛️ This is the one place the entity mutates: a single private reassignment, value objects stay immutable.
+- [x] 4.4 🔵 REFACTOR checkpoint — ✂️ `coding-standards` on CQS: the mutation must be confined; every calculation around it stays pure.
+- [x] 4.5 ✅ `bun run compile` before marking the group done.
 
 ## 5. The spherical surface
 
