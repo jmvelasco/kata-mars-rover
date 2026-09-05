@@ -36,4 +36,12 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(reappearsAt, facing));
   });
+
+  it('reappears on the opposite edge when it crosses one moving backward', () => {
+    const rover = new Rover(new Position(new Coordinates(2, 0), Direction.North), new Planet(5, 5));
+
+    rover.execute([Command.MoveBackward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 4), Direction.North));
+  });
 });
