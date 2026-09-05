@@ -33,4 +33,16 @@ describe('The Rover', () => {
 
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 1), Direction.North));
   });
+
+  it.each([
+    { facing: 'east', start: Direction.East, behind: new Coordinates(1, 2) },
+    { facing: 'south', start: Direction.South, behind: new Coordinates(2, 3) },
+    { facing: 'west', start: Direction.West, behind: new Coordinates(3, 2) },
+  ])('retreats one cell when moving backward facing $facing', ({ start, behind }) => {
+    const rover = new Rover(new Position(new Coordinates(2, 2), start));
+
+    rover.execute([Command.MoveBackward]);
+
+    expect(rover.position()).toEqual(new Position(behind, start));
+  });
 });
