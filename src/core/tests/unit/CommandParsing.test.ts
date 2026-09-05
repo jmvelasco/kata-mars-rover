@@ -30,6 +30,15 @@ describe('The Command Sequence', () => {
 
     expect(parsing).toThrow("Unknown command 'X'");
   });
+
+  it.each([
+    { unknown: 'F', text: 'F' },
+    { unknown: 'm', text: 'mm' },
+  ])('rejects $unknown because it is not part of the vocabulary', ({ unknown, text }) => {
+    const parsing = () => parseCommands(text);
+
+    expect(parsing).toThrow(`Unknown command '${unknown}'`);
+  });
 });
 
 describe('The Rover', () => {
