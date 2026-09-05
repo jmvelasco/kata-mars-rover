@@ -37,4 +37,26 @@ describe('The Rover', () => {
 
     expect(rover.getDirection()).toBeInstanceOf(East);
   });
+
+  it('moves forward', () => {
+    const grid = new Grid(10, 10);
+    const position = new Position(2, 2);
+    const direction = new North();
+    const rover = new Rover(position, direction, grid);
+
+    rover.execute('F');
+
+    expect(rover.getPosition().equals(new Position(2, 3))).toBe(true);
+  });
+
+  it('moves backward', () => {
+    const grid = new Grid(10, 10);
+    const position = new Position(2, 2);
+    const direction = new North();
+    const rover = new Rover(position, direction, grid);
+
+    rover.execute('B');
+
+    expect(rover.getPosition().equals(new Position(2, 1))).toBe(true);
+  });
 });
