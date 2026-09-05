@@ -5,4 +5,13 @@ export enum Command {
   MoveBackward = 'B',
 }
 
-export const parseCommands = (text: string): Command[] => text.split('').map(() => Command.TurnLeft);
+export const parseCommands = (text: string): Command[] => {
+  const commandOf: Record<string, Command> = {
+    [Command.TurnLeft]: Command.TurnLeft,
+    [Command.TurnRight]: Command.TurnRight,
+    [Command.MoveForward]: Command.MoveForward,
+    [Command.MoveBackward]: Command.MoveBackward,
+  };
+
+  return text.split('').map((character) => commandOf[character]);
+};
