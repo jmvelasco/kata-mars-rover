@@ -1,11 +1,15 @@
 import { Coordinates } from './Coordinates';
 
 export class Planet {
+  private readonly obstacles: Coordinates[];
+
   constructor(
     private readonly width: number,
     private readonly height: number,
-    private readonly obstacles: Coordinates[] = []
-  ) {}
+    obstacles: Coordinates[] = []
+  ) {
+    this.obstacles = obstacles.map((obstacle) => obstacle.wrappedWithin(width, height));
+  }
 
   resolve(coordinates: Coordinates): Coordinates {
     return coordinates.wrappedWithin(this.width, this.height);
