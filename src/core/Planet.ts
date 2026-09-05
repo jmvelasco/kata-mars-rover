@@ -16,6 +16,8 @@ export class Planet {
   }
 
   hasObstacleAt(coordinates: Coordinates): boolean {
-    return this.obstacles.some((obstacle) => obstacle.equals(coordinates));
+    const cell = this.resolve(coordinates);
+
+    return this.obstacles.some((obstacle) => obstacle.equals(cell));
   }
 }
