@@ -7,6 +7,10 @@ import { Position } from './Position';
 export class Rover {
   private currentPosition: Position;
 
+  static land(landingPosition: Position, planet: Planet): Rover {
+    return new Rover(landingPosition, planet);
+  }
+
   constructor(
     landingPosition: Position,
     private readonly planet: Planet
