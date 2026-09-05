@@ -17,4 +17,8 @@ export class Rover {
   getDirection(): Direction {
     return this.direction;
   }
+
+  execute(commands: string): void {
+    void commands;
+  }
 }
