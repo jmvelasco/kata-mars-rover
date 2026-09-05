@@ -19,6 +19,13 @@ export class Rover {
   }
 
   execute(commands: string): void {
-    void commands;
+    commands.split('').forEach((command) => {
+      if (command === 'L') {
+        this.direction = this.direction.turnLeft();
+      }
+      if (command === 'R') {
+        this.direction = this.direction.turnRight();
+      }
+    });
   }
 }
