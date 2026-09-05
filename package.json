@@ -1,29 +1,24 @@
 {
   "name": "kata-mars-rover",
   "version": "1.0.0",
-  "private": true,
   "description": "Kata Mars Rover en TypeScript con Bun, ESLint, Prettier y Jest",
   "main": "lib/index.js",
-  "types": "lib/index.d.ts",
-  "engines": {
-    "node": ">=22"
-  },
   "scripts": {
-    "prepare": "husky",
-    "dev": "tsc -p tsconfig.build.json --watch",
-    "build": "bun run clean && tsc -b tsconfig.build.json",
+    "prepare": "husky install",
+    "dev": "tsc --watch",
+    "build": "bun run clean && tsc -b",
     "clean": "rm -rf lib coverage",
     "analyze": "bun run lint:fix && bun run compile",
     "compile": "tsc --noEmit",
     "compile:watch": "tsc --noEmit --watch",
-    "compile:build": "tsc -b tsconfig.build.json",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "compile:build": "tsc -b",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "lint-staged": "lint-staged",
     "lint-staged:debug": "lint-staged --debug",
-    "format": "prettier . --check",
-    "format:check": "prettier . --check",
-    "format:fix": "prettier . --write",
+    "format": "prettier --config .prettierrc '**/*.+(ts|tsx)'",
+    "format:check": "prettier --config .prettierrc '**/*.+(ts|tsx)' --check",
+    "format:fix": "prettier --config .prettierrc '**/*.+(ts|tsx)' --write",
     "test": "jest --verbose",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
@@ -35,9 +30,11 @@
   "author": "jmvelasco",
   "license": "MIT",
   "devDependencies": {
-    "@eslint/js": "9.39.1",
-    "@jest/globals": "30.2.0",
+    "@fission-ai/openspec": "^1.11.0",
+    "@types/jest": "30.0.0",
     "@types/node": "24.10.1",
+    "@typescript-eslint/eslint-plugin": "8.48.1",
+    "@typescript-eslint/parser": "8.48.1",
     "eslint": "9.39.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.4",
@@ -47,15 +44,11 @@
     "npm-check-updates": "19.1.2",
     "prettier": "3.7.4",
     "ts-jest": "29.4.6",
-    "typescript": "5.9.3",
-    "typescript-eslint": "8.48.1"
+    "typescript": "5.9.3"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.+(ts|tsx)": [
       "eslint --fix",
-      "prettier --write"
-    ],
-    "*.{js,json,md}": [
       "prettier --write"
     ]
   }
