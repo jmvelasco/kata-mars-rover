@@ -6,14 +6,7 @@ export enum Command {
 }
 
 const toCommand = (character: string): Command => {
-  const commandOf: Record<string, Command | undefined> = {
-    [Command.TurnLeft]: Command.TurnLeft,
-    [Command.TurnRight]: Command.TurnRight,
-    [Command.MoveForward]: Command.MoveForward,
-    [Command.MoveBackward]: Command.MoveBackward,
-  };
-
-  const command = commandOf[character];
+  const command = Object.values(Command).find((knownCommand) => knownCommand === character);
 
   if (command === undefined) {
     throw new Error(`Unknown command '${character}'`);
