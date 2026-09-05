@@ -10,9 +10,8 @@ export class Rover {
   ) {}
 
   getPosition(): Position {
-    void this.position;
-    void this.grid;
-    return new Position(0, 0);
+    void this.grid; // Suppress TS6138 until used
+    return this.position;
   }
 
   getDirection(): Direction {
