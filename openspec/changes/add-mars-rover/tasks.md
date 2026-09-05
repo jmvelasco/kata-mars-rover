@@ -8,18 +8,18 @@
 
 ## 1. Test bed and case list
 
-- [ ] 1.1 📁 Create `src/core/tests/unit/` following 🧪 `testing-standards.md` on test location. Leave `src/core/sum.ts` and `src/tests/sum.test.ts` untouched — 🚫 deleting an existing test requires explicit Tech Lead approval.
-- [ ] 1.2 🤔 REASON — write the ordered case list as a TODO comment inside the test file, per 📏 `tdd.md` step 0. The list is the seven blocks below; it is a temporary tracking artifact and gets removed in task 9.1.
+- [x] 1.1 📁 Create `src/core/tests/unit/` following 🧪 `testing-standards.md` on test location. Leave `src/core/sum.ts` and `src/tests/sum.test.ts` untouched — 🚫 deleting an existing test requires explicit Tech Lead approval.
+- [x] 1.2 🤔 REASON — write the ordered case list as a TODO comment inside the test file, per 📏 `tdd.md` step 0. The list is the seven blocks below; it is a temporary tracking artifact and gets removed in task 9.1.
 
 ## 2. Position and turning
 
-- [ ] 2.1 🔴🟢 The rover reports the position it was placed at. 📏 TPP expected: `nil → constant`. Spec: `rover-navigation` — *The rover reports its position*.
-- [ ] 2.2 🔴🟢 The rover turns left from north. 📏 TPP expected: `constant → constant+`. ⚠️ Do **not** reach for a modulo ring yet — 📐 YAGNI and the Golden Rule of GREEN.
-- [ ] 2.3 🔴🟢 The rover turns left from every orientation. Spec: `rover-navigation` — *Turning left rotates 90 degrees counter-clockwise*.
-- [ ] 2.4 🔴🟢 The rover turns right from north.
-- [ ] 2.5 🔴🟢 Four right turns restore the original orientation.
-- [ ] 2.6 🔵 REFACTOR checkpoint — ✂️ `coding-standards`: is orientation knowledge duplicated? Apply the Rule of Three: abstract only if the same knowledge has appeared three times. If not, leave it and say so.
-- [ ] 2.7 ✅ `bun run compile` before marking the group done.
+- [x] 2.1 🔴🟢 The rover reports the position it was placed at. 📏 TPP expected: `nil → constant`. Spec: `rover-navigation` — *The rover reports its position*.
+- [x] 2.2 🔴🟢 The rover turns left from north. 📏 TPP expected: `constant → constant+`. ⚠️ Do **not** reach for a modulo ring yet — 📐 YAGNI and the Golden Rule of GREEN.
+- [x] 2.3 🔴🟢 The rover turns left from every orientation. Spec: `rover-navigation` — *Turning left rotates 90 degrees counter-clockwise*.
+- [x] 2.4 🔴🟢 The rover turns right from north.
+- [x] 2.5 🔴🟢 Four right turns restore the original orientation.
+- [x] 2.6 🔵 REFACTOR checkpoint — ✂️ `coding-standards`: is orientation knowledge duplicated? Apply the Rule of Three: abstract only if the same knowledge has appeared three times. If not, leave it and say so.
+- [x] 2.7 ✅ `bun run compile` before marking the group done.
 
 ## 3. Moving forward and backward
 
