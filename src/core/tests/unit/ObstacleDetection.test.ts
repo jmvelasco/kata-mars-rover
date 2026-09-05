@@ -61,6 +61,15 @@ describe('The Rover', () => {
     expect(rover.position()).toEqual(new Position(new Coordinates(2, 4), Direction.North));
   });
 
+  it('is blocked by an obstacle declared beyond an edge', () => {
+    const planet = new Planet(5, 5, [new Coordinates(7, 2)]);
+    const rover = Rover.land(new Position(new Coordinates(2, 1), Direction.North), planet);
+
+    rover.execute([Command.MoveForward]);
+
+    expect(rover.position()).toEqual(new Position(new Coordinates(2, 1), Direction.North));
+  });
+
   it('reports no obstacle when it completes the whole sequence', () => {
     const rover = Rover.land(new Position(new Coordinates(0, 0), Direction.North), new Planet(5, 5));
 
