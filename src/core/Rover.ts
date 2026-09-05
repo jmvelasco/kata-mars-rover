@@ -19,31 +19,34 @@ export class Rover {
   }
 
   execute(commands: Command[]): MissionReport {
+    let report = new MissionReport(this.currentPosition);
+
     commands.forEach((command) => {
-      this.currentPosition = this.positionAfterExecuting(command, this.currentPosition);
+      report = this.reportOfExecuting(command, report.position);
+      this.currentPosition = report.position;
     });
 
-    return new MissionReport(this.currentPosition);
+    return report;
   }
 
-  private positionAfterExecuting(command: Command, position: Position): Position {
-    const outcomeOf: Record<Command, (from: Position) => Position> = {
-      [Command.TurnLeft]: (from) => from.turnedLeft(),
-      [Command.TurnRight]: (from) => from.turnedRight(),
-      [Command.MoveForward]: (from) => this.positionAfterMovingTo(from.cellAhead(), from),
-      [Command.MoveBackward]: (from) => this.positionAfterMovingTo(from.cellBehind(), from),
+  private reportOfExecuting(command: Command, from: Position): MissionReport {
+    const outcomeOf: Record<Command, () => MissionReport> = {
+      [Command.TurnLeft]: () => new MissionReport(from.turnedLeft()),
+      [Command.TurnRight]: () => new MissionReport(from.turnedRight()),
+      [Command.MoveForward]: () => this.reportOfMovingTo(from.cellAhead(), from),
+      [Command.MoveBackward]: () => this.reportOfMovingTo(from.cellBehind(), from),
     };
 
-    return outcomeOf[command](position);
+    return outcomeOf[command]();
   }
 
-  private positionAfterMovingTo(target: Coordinates, from: Position): Position {
+  private reportOfMovingTo(target: Coordinates, from: Position): MissionReport {
     const landing = this.planet.resolve(target);
 
     if (this.planet.hasObstacleAt(landing)) {
-      return from;
+      return new MissionReport(from, landing);
     }
 
-    return from.movedTo(landing);
+    return new MissionReport(from.movedTo(landing));
   }
 }
