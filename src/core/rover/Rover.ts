@@ -19,26 +19,44 @@ export class Rover {
 
   execute(commands: string): string {
     for (const command of commands) {
-      if (command === 'L') {
-        this.direction = this.direction.turnLeft();
-      } else if (command === 'R') {
-        this.direction = this.direction.turnRight();
-      } else if (command === 'F') {
-        const next = this.grid.nextPosition(this.position, this.direction.forwardVector());
-        if (this.grid.hasObstacle(next)) {
-          return `O:${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
-        }
-        this.position = next;
-      } else if (command === 'B') {
-        const forward = this.direction.forwardVector();
-        const backward = new Position(-forward.x, -forward.y);
-        const next = this.grid.nextPosition(this.position, backward);
-        if (this.grid.hasObstacle(next)) {
-          return `O:${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
-        }
-        this.position = next;
+      const obstacleHit = this.processCommand(command);
+      if (obstacleHit) {
+        return this.formatStatus(true);
       }
     }
-    return `${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
+    return this.formatStatus(false);
+  }
+
+  private processCommand(command: string): boolean {
+    if (command === 'L') {
+      this.direction = this.direction.turnLeft();
+      return false;
+    }
+    if (command === 'R') {
+      this.direction = this.direction.turnRight();
+      return false;
+    }
+    if (command === 'F') {
+      return this.tryMove(this.direction.forwardVector());
+    }
+    if (command === 'B') {
+      const forward = this.direction.forwardVector();
+      return this.tryMove(new Position(-forward.x, -forward.y));
+    }
+    return false;
+  }
+
+  private tryMove(vector: Position): boolean {
+    const next = this.grid.nextPosition(this.position, vector);
+    if (this.grid.hasObstacle(next)) {
+      return true;
+    }
+    this.position = next;
+    return false;
+  }
+
+  private formatStatus(isObstacle: boolean): string {
+    const prefix = isObstacle ? 'O:' : '';
+    return `${prefix}${this.position.x}:${this.position.y}:${this.direction.constructor.name.charAt(0)}`;
   }
 }
