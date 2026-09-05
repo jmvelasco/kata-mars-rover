@@ -1,9 +1,8 @@
+# spherical-grid Specification
+
 ## Purpose
-
 Describes the planetary surface as a finite grid whose opposite edges are connected, so that every coordinate the rover can name resolves to a real cell and nothing is ever outside the map.
-
-## ADDED Requirements
-
+## Requirements
 ### Requirement: The surface has a width and a height
 
 The surface SHALL be created with a width and a height given independently, so that non-square grids are supported. Coordinates run from `0` to `width - 1` on the `x` axis and from `0` to `height - 1` on the `y` axis, with the origin at the bottom-left corner.
@@ -50,7 +49,7 @@ The surface SHALL wrap any coordinate that falls beyond an edge to the opposite 
 
 ### Requirement: No coordinate is ever outside the surface
 
-Because opposite edges are connected, the surface SHALL treat a coordinate beyond its bounds as another way of naming a cell inside them, and SHALL normalise it by wrapping. This applies to the coordinates the rover is placed at, not only to the ones it reaches by moving.
+Because opposite edges are connected, the surface SHALL treat a coordinate beyond its bounds as another way of naming a cell inside them, and SHALL normalise it by wrapping. This applies to every coordinate the surface handles: the ones the rover reaches by moving, the ones it is placed at, and the ones that name an obstacle.
 
 #### Scenario: Placing the rover beyond the east edge
 - **GIVEN** a 5x5 surface
@@ -61,3 +60,9 @@ Because opposite edges are connected, the surface SHALL treat a coordinate beyon
 - **GIVEN** a 5x5 surface
 - **WHEN** a rover is placed at coordinates (-1, 0) facing north
 - **THEN** it reports coordinates (4, 0) facing north
+
+#### Scenario: Declaring an obstacle beyond an edge
+- **GIVEN** a 5x5 surface with an obstacle at coordinates (7, 2)
+- **WHEN** the surface resolves where that obstacle sits
+- **THEN** the obstacle occupies the cell (2, 2), the one its coordinates name
+

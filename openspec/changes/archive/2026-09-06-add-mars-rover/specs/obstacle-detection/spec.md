@@ -6,7 +6,7 @@ Describes how fixed obstacles on the surface stop the rover, how the interrupted
 
 ### Requirement: An obstacle prevents the rover from entering a cell
 
-The surface MAY contain obstacles at fixed coordinates. When a movement command would take the rover onto an obstacle, the rover SHALL stay on the last valid cell it occupied, keeping its current orientation.
+The surface MAY contain obstacles at fixed coordinates, normalised by the same wrapping rule as any other coordinate. When a movement command would take the rover onto an obstacle, the rover SHALL stay on the last valid cell it occupied, keeping its current orientation.
 
 #### Scenario: An obstacle directly ahead stops the advance
 - **GIVEN** a 5x5 surface with an obstacle at coordinates (0, 2)
@@ -19,6 +19,12 @@ The surface MAY contain obstacles at fixed coordinates. When a movement command 
 - **AND** a rover at coordinates (2, 3) facing north
 - **WHEN** it executes `BB`
 - **THEN** it is at coordinates (2, 2) facing north
+
+#### Scenario: An obstacle declared beyond an edge blocks the cell it names
+- **GIVEN** a 5x5 surface with an obstacle at coordinates (7, 2)
+- **AND** a rover at coordinates (2, 1) facing north
+- **WHEN** it executes `M`
+- **THEN** it is at coordinates (2, 1) facing north, blocked by the obstacle that names the cell (2, 2)
 
 #### Scenario: An obstacle across a connected edge also blocks
 - **GIVEN** a 5x5 surface with an obstacle at coordinates (2, 0)
@@ -89,3 +95,8 @@ An obstacle physically occupies its cell, so placing the rover there SHALL be re
 - **GIVEN** a 5x5 surface with an obstacle at coordinates (1, 1)
 - **WHEN** a rover is placed at coordinates (6, 6) facing north
 - **THEN** the placement is refused, because those coordinates name the occupied cell (1, 1)
+
+#### Scenario: Refusal considers an obstacle named beyond an edge
+- **GIVEN** a 5x5 surface with an obstacle at coordinates (7, 2)
+- **WHEN** a rover is placed at coordinates (2, 2) facing north
+- **THEN** the placement is refused, because the obstacle names that cell
