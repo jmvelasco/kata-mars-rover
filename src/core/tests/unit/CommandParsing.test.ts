@@ -22,6 +22,14 @@ describe('The Command Sequence', () => {
 
     expect(commands).toEqual([]);
   });
+
+  it('names the unknown character that rejected the sequence', () => {
+    const text = 'MMXR';
+
+    const parsing = () => parseCommands(text);
+
+    expect(parsing).toThrow("Unknown command 'X'");
+  });
 });
 
 describe('The Rover', () => {
