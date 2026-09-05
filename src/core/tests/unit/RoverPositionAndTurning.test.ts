@@ -2,6 +2,7 @@ import { describe, it, expect } from '@jest/globals';
 import { Command } from '../../Command';
 import { Coordinates } from '../../Coordinates';
 import { Direction } from '../../Direction';
+import { Planet } from '../../Planet';
 import { Position } from '../../Position';
 import { Rover } from '../../Rover';
 
@@ -52,7 +53,7 @@ import { Rover } from '../../Rover';
 
 describe('The Rover', () => {
   it('reports the position it was placed at', () => {
-    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North));
+    const rover = new Rover(new Position(new Coordinates(0, 0), Direction.North), new Planet(5, 5));
 
     const position = rover.position();
 
@@ -60,7 +61,7 @@ describe('The Rover', () => {
   });
 
   it('faces west after turning left from north', () => {
-    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North), new Planet(5, 5));
 
     rover.execute([Command.TurnLeft]);
 
@@ -72,7 +73,7 @@ describe('The Rover', () => {
     { from: 'south', to: 'east', start: Direction.South, expected: Direction.East },
     { from: 'east', to: 'north', start: Direction.East, expected: Direction.North },
   ])('faces $to after turning left from $from', ({ start, expected }) => {
-    const rover = new Rover(new Position(new Coordinates(2, 2), start));
+    const rover = new Rover(new Position(new Coordinates(2, 2), start), new Planet(5, 5));
 
     rover.execute([Command.TurnLeft]);
 
@@ -80,7 +81,7 @@ describe('The Rover', () => {
   });
 
   it('faces east after turning right from north', () => {
-    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North), new Planet(5, 5));
 
     rover.execute([Command.TurnRight]);
 
@@ -88,7 +89,7 @@ describe('The Rover', () => {
   });
 
   it('faces north again after four right turns', () => {
-    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North));
+    const rover = new Rover(new Position(new Coordinates(2, 2), Direction.North), new Planet(5, 5));
 
     rover.execute([Command.TurnRight, Command.TurnRight, Command.TurnRight, Command.TurnRight]);
 

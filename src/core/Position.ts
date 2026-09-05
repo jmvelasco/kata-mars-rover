@@ -15,11 +15,15 @@ export class Position {
     return new Position(this.coordinates, this.direction.turnedRight());
   }
 
-  movedForward(): Position {
-    return new Position(this.direction.ahead(this.coordinates), this.direction);
+  cellAhead(): Coordinates {
+    return this.direction.ahead(this.coordinates);
   }
 
-  movedBackward(): Position {
-    return new Position(this.direction.behind(this.coordinates), this.direction);
+  cellBehind(): Coordinates {
+    return this.direction.behind(this.coordinates);
+  }
+
+  movedTo(coordinates: Coordinates): Position {
+    return new Position(coordinates, this.direction);
   }
 }
