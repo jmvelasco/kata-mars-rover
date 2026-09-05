@@ -2,7 +2,7 @@ import { describe, it, expect } from '@jest/globals';
 import { Coordinate } from '../../core/coordinate';
 
 // TODO List:
-// - [ ] Coordinate stores x, y with equality
+// - [x] Coordinate stores x, y with equality
 // - [ ] Coordinate adds delta and returns new Coordinate
 
 describe('The Coordinate', () => {
@@ -18,5 +18,13 @@ describe('The Coordinate', () => {
 
     expect(coordinate.equals(Coordinate.of(1, 5))).toBe(false);
     expect(coordinate.equals(Coordinate.of(3, 1))).toBe(false);
+  });
+
+  it('adds a delta and returns a new coordinate', () => {
+    const coordinate = Coordinate.of(1, 2);
+
+    const result = coordinate.add(3, 4);
+
+    expect(result.equals(Coordinate.of(4, 6))).toBe(true);
   });
 });
