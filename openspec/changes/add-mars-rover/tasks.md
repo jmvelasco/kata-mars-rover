@@ -23,12 +23,12 @@
 
 ## 3. Moving forward and backward
 
-- [ ] 3.1 🔴🟢 The rover moves forward one cell facing north (`N` increases `y`). Spec: `rover-navigation` — *Moving forward advances one cell*.
-- [ ] 3.2 🔴🟢 The rover moves forward in every orientation. ⚠️ The orientation knowledge now lives in turning **and** in displacement — watch for the smell.
-- [ ] 3.3 🔴🟢 The rover moves backward one cell facing north.
-- [ ] 3.4 🔴🟢 The rover moves backward in every orientation.
-- [ ] 3.5 🔵 REFACTOR — the duplication has now appeared three times. Per 🎯 `design.md` — *What the TDD cycle decides*, resolve it here: ordered ring, `Direction` value object with behaviour, or vector table. Choose from the code in front of you, keep the suite green, commit as `test(refactor):`.
-- [ ] 3.6 ✅ `bun run compile` before marking the group done.
+- [x] 3.1 🔴🟢 The rover moves forward one cell facing north (`N` increases `y`). Spec: `rover-navigation` — *Moving forward advances one cell*.
+- [x] 3.2 🔴🟢 The rover moves forward in every orientation. ⚠️ The orientation knowledge now lives in turning **and** in displacement — watch for the smell.
+- [x] 3.3 🔴🟢 The rover moves backward one cell facing north.
+- [x] 3.4 🔴🟢 The rover moves backward in every orientation.
+- [x] 3.5 🔵 REFACTOR — the duplication has now appeared three times. Per 🎯 `design.md` — *What the TDD cycle decides*, resolve it here: ordered ring, `Direction` value object with behaviour, or vector table. Choose from the code in front of you, keep the suite green, commit as `test(refactor):`.
+- [x] 3.6 ✅ `bun run compile` before marking the group done.
 
 ## 4. Sequences and state persistence
 
