@@ -33,11 +33,11 @@
 > 📏 Rules: coding-standards (SRP), design D4
 > 📖 Spec: `specs/rover/wrapping/spec.md`, `specs/rover/obstacle-detection/spec.md`
 
-- [ ] 4.1 🔴🟢 Create `MarsMap` VO — wraps a coordinate that exceeds the northern boundary (y ≥ height → y wraps to 0). Create `src/core/marsMap.ts`. Verify test passes.
-- [ ] 4.2 🔴🟢 Wrapping works for all four boundaries (east, south, west, including negative values). Verify tests pass.
-- [ ] 4.3 🔴🟢 MarsMap detects obstacles — `hasObstacle(coordinate)` returns true when the coordinate is occupied. Verify test passes.
-- [ ] 4.4 🔵 Refactor if needed. Verify tests remain green.
-- [ ] 4.5 Run `bun run format:fix` and `bun run validate`. 🔧 *format, validate*
+- [x] 4.1 🔴🟢 Create `MarsMap` VO — wraps a coordinate that exceeds the northern boundary (y ≥ height → y wraps to 0). Create `src/core/marsMap.ts`. Verify test passes.
+- [x] 4.2 🔴🟢 Wrapping works for all four boundaries (east, south, west, including negative values). Verify tests pass.
+- [x] 4.3 🔴🟢 MarsMap detects obstacles — `hasObstacle(coordinate)` returns true when the coordinate is occupied. Verify test passes.
+- [x] 4.4 🔵 Refactor if needed. Verify tests remain green.
+- [x] 4.5 Run `bun run format:fix` and `bun run validate`. 🔧 *format, validate*
 
 ## 5. Rover — Initialization and Turns
 
